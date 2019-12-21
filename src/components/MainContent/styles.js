@@ -45,6 +45,34 @@ const useStyles = makeStyles({
     fontSize: 14,
     opacity: 0.25,
     fontWeight: 300
+  },
+  optionsContainer: {
+    marginTop: 33,
+    height: 40,
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  optionBase: {
+    height: "100%",
+    width: "100%",
+    borderRadius: 2
+  },
+  optionSelected: {
+    backgroundColor: "#0bd080"
+  },
+  optionTextBase: {
+    fontFamily: "Rubik",
+    fontSize: 14,
+    fontWeight: 300
+  },
+  optionTextSelected: {
+    color: "#ffffff"
+  },
+  optionTextDeselected: {
+    color: "#4a4a4a"
   }
 });
 
