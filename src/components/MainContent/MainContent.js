@@ -1,7 +1,8 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Typography, Divider } from "@material-ui/core";
 
 import useStyles from "./styles";
+import text from "./mainContentText";
 import BalanceContainer from "../BalanceContainer/BalanceContainer";
 
 const MainContent = () => {
@@ -10,8 +11,8 @@ const MainContent = () => {
   return (
     <div className={classes.mainContent}>
       <div className={classes.mainWrapper}>
-        <Typography className={classes.title}>Wrap/Unwrap ETH</Typography>
-        <Typography className={classes.subtitle}>Your Balances</Typography>
+        <Typography className={classes.title}>{text.title}</Typography>
+        <Typography className={classes.subtitle}>{text.subtitle}</Typography>
         <BalanceContainer
           isEth={true}
           balance={"100"}
@@ -22,6 +23,10 @@ const MainContent = () => {
           balance={"50"}
           className={classes.wethMargin}
         />
+        <Divider className={classes.divider} />
+        <Typography className={classes.instructions}>
+          {text.instructions}
+        </Typography>
       </div>
     </div>
   );

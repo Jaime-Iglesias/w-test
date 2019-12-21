@@ -1,10 +1,9 @@
 import React from "react";
-import { ThemeProvider, makeStyles } from "@material-ui/styles";
+import { makeStyles, ThemeProvider } from "@material-ui/styles";
 import Web3 from "web3";
 import { Web3ReactProvider } from "@web3-react/core";
 
 import theme from "./theme";
-
 import Header from "./components/Header/Header";
 import MainContent from "./components/MainContent/MainContent";
 

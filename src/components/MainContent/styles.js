@@ -34,6 +34,17 @@ const useStyles = makeStyles({
   },
   wethMargin: {
     marginTop: 8
+  },
+  divider: {
+    width: "100%",
+    marginTop: 27
+  },
+  instructions: {
+    marginTop: 33,
+    fontFamily: "Rubik",
+    fontSize: 14,
+    opacity: 0.25,
+    fontWeight: 300
   }
 });
 
