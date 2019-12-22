@@ -125,7 +125,7 @@ const MainButton = ({
 
   const wrapEther = async () => {
     if (account && library && chainId === 1) {
-      const tx = await library.sendTransaction({
+      const tx = await library.eth.sendTransaction({
         from: account,
         to: wethAddress,
         value: library.utils.toWei(inputAmount, "ether")

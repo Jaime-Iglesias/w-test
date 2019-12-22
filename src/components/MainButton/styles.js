@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
   mainButtonTextBase: {
     fontFamily: "Rubik",
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 300,
     color: "#ffffff"
   },
