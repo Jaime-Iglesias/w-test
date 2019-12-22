@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, ButtonBase } from "@material-ui/core";
+import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
 
-const setButtonType = (submitButtonStatus, classes, inputAmount) => {
+const setButtonType = (
+  submitButtonStatus,
+  classes,
+  inputAmount,
+  isPending,
+  wrapEther,
+  unwrapEther
+) => {
   switch (submitButtonStatus) {
     case "wrap":
       return (
@@ -17,6 +25,7 @@ const setButtonType = (submitButtonStatus, classes, inputAmount) => {
           <ButtonBase
             className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
             disableRipple
+            onClick={() => wrapEther()}
           >
             <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
           </ButtonBase>
@@ -26,7 +35,7 @@ const setButtonType = (submitButtonStatus, classes, inputAmount) => {
       return (
         <>
           <Typography className={classes.baseDescTop}>
-            {`You will receive ${inputAmount} ETH`}
+            {`You will receive ${inputAmount || "0"} ETH`}
           </Typography>
           <Typography className={classes.baseDescBottom}>
             *Does not include network costs (i.e. gas).
@@ -34,6 +43,7 @@ const setButtonType = (submitButtonStatus, classes, inputAmount) => {
           <ButtonBase
             className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
             disableRipple
+            onClick={() => unwrapEther()}
           >
             <Typography className={classes.mainButtonTextBase}>
               Unwrap
@@ -73,24 +83,6 @@ const setButtonType = (submitButtonStatus, classes, inputAmount) => {
           </ButtonBase>
         </>
       );
-    case "allowWeth":
-      return (
-        <>
-          <Typography className={classes.baseDescError}>
-            Set Your WETH allowance to continue
-          </Typography>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.allowanceCase].join(
-              " "
-            )}
-            disableRipple
-          >
-            <Typography className={classes.mainButtonTextBase}>
-              Set WETH Allowance
-            </Typography>
-          </ButtonBase>
-        </>
-      );
     case "disabled":
       return (
         <ButtonBase
@@ -119,10 +111,48 @@ const setButtonType = (submitButtonStatus, classes, inputAmount) => {
   }
 };
 
-const MainButton = ({ submitButtonStatus, inputAmount }) => {
+const MainButton = ({
+  submitButtonStatus,
+  inputAmount,
+  wethContract,
+  wethAddress
+}) => {
   const classes = useStyles();
+  const context = useWeb3React();
+  const { account, library, chainId } = context;
 
-  return <>{setButtonType(submitButtonStatus, classes, inputAmount)}</>;
+  const [isPending, setIsPending] = useState(false);
+
+  const wrapEther = async () => {
+    if (account && library && chainId === 1) {
+      const tx = await library.sendTransaction({
+        from: account,
+        to: wethAddress,
+        value: library.utils.toWei(inputAmount, "ether")
+      });
+    }
+  };
+
+  const unwrapEther = async () => {
+    if (account && library && chainId === 1) {
+      const tx = await wethContract.methods
+        .withdraw(library.utils.toWei(inputAmount, "ether"))
+        .send({ from: account });
+    }
+  };
+
+  return (
+    <>
+      {setButtonType(
+        submitButtonStatus,
+        classes,
+        inputAmount,
+        isPending,
+        wrapEther,
+        unwrapEther
+      )}
+    </>
+  );
 };
 
 export default MainButton;

@@ -28,7 +28,6 @@ const MainContent = () => {
   const [wrapEtherSelected, setWrapEtherSelected] = useState(true);
   const [ethBalance, setEthBalance] = useState("-");
   const [wethBalance, setWethBalance] = useState("-");
-  const [wethAllowance, setWethAllowance] = useState("");
   const [inputAmount, setInputAmount] = useState("");
   const [submitButtonStatus, setSubmitButtonStatus] = useState("disabled");
 
@@ -62,13 +61,6 @@ const MainContent = () => {
     setWethBalance(wethFixed);
   };
 
-  const checkWethAllowance = async () => {
-    const allowance = await wethContract.methods
-      .allowance(account, wethAddress)
-      .call();
-    setWethAllowance(allowance);
-  };
-
   const setMax = () => {
     wrapEtherSelected
       ? setInputAmount(ethBalance)
@@ -83,7 +75,6 @@ const MainContent = () => {
     if (account && chainId === 1 && library) {
       getEthBalance();
       getWethBalance();
-      checkWethAllowance();
     }
   }, [account, chainId, library]);
 
@@ -95,9 +86,7 @@ const MainContent = () => {
         setSubmitButtonStatus("wrap");
       }
     } else if (!wrapEtherSelected && account) {
-      if (wethAllowance < wethBalance) {
-        setSubmitButtonStatus("allowWeth");
-      } else if (inputAmount > wethBalance) {
+      if (inputAmount > wethBalance) {
         setSubmitButtonStatus("lessWeth");
       } else {
         setSubmitButtonStatus("unwrap");
@@ -185,6 +174,8 @@ const MainContent = () => {
         />
         <MainButton
           submitButtonStatus={submitButtonStatus}
+          wethAddress={wethAddress}
+          wethContract={wethContract}
           inputAmount={inputAmount}
         />
       </div>

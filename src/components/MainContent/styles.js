@@ -59,7 +59,8 @@ const useStyles = makeStyles({
     height: "100%",
     width: "100%",
     boxShadow: "3px 9px 15px 0 rgba(0, 0, 0, 0.07)",
-    borderRadius: 2
+    borderRadius: 2,
+    border: "1px solid transparent"
   },
   optionSelected: {
     backgroundColor: "#0bd080"
