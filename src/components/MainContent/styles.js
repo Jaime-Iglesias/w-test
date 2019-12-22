@@ -59,10 +59,7 @@ const useStyles = makeStyles({
     height: "100%",
     width: "100%",
     boxShadow: "3px 9px 15px 0 rgba(0, 0, 0, 0.07)",
-    borderRadius: 2,
-    "&:hover": {
-      border: "1px solid #dddddd"
-    }
+    borderRadius: 2
   },
   optionSelected: {
     backgroundColor: "#0bd080"
@@ -78,8 +75,23 @@ const useStyles = makeStyles({
   optionTextDeselected: {
     color: "#4a4a4a"
   },
+  ethOptionDisabled: {
+    backgroundColor: "#d1d1d1",
+    cursor: "default"
+  },
+  wethOptionDisabled: {
+    cursor: "default"
+  },
+  hoverEffect: {
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
+  },
   wrapText: {
     color: "#ffffff"
+  },
+  wrapButtonDisabled: {
+    backgroundColor: "#d1d1d1"
   },
   wrapButton: {
     backgroundColor: "#0bd080",

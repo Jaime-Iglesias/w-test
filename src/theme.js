@@ -1,7 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-import DinProFont from "./fonts/DINPro-Regular.woff";
-
+/*
 const dinpro = {
   fontFamily: "DINPro Regular",
   fontStyle: "normal",
@@ -11,8 +10,10 @@ const dinpro = {
         url(${DinProFont}) format('woff')
         `
 };
+*/
 
 const theme = createMuiTheme({
+  /*
   typography: {
     fontFamily: "DINPro Regular"
   },
@@ -23,6 +24,7 @@ const theme = createMuiTheme({
       }
     }
   }
+  */
 });
 
 export default theme;

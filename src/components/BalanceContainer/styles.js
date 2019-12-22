@@ -22,6 +22,9 @@ const useStyles = makeStyles({
     borderRadius: 2,
     cursor: "default"
   },
+  disabled: {
+    backgroundColor: "#d1d1d1"
+  },
   innerText: {
     fontFamily: "DINPro Regular",
     fontSize: 22,

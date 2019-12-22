@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Divider, ButtonBase } from "@material-ui/core";
+import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
 import text from "./mainContentText";
@@ -8,18 +9,21 @@ import InputContainer from "../InputContainer/InputContainer";
 import MainButton from "../MainButton/MainButton";
 
 const MainContent = () => {
+  const context = useWeb3React();
+  const { account, library, chainId } = context;
+
   const classes = useStyles();
 
   const [wrapEtherSelected, setWrapEtherSelected] = useState(true);
 
   const setWrapEther = () => {
-    if (!wrapEtherSelected) {
+    if (!wrapEtherSelected && account && chainId === 1) {
       setWrapEtherSelected(true);
     }
   };
 
   const setUnwrapEther = () => {
-    if (wrapEtherSelected) {
+    if (wrapEtherSelected && account && chainId === 1) {
       setWrapEtherSelected(false);
     }
   };
@@ -31,13 +35,15 @@ const MainContent = () => {
         <Typography className={classes.subtitle}>{text.subtitle}</Typography>
         <BalanceContainer
           isEth={true}
-          balance={"100"}
+          balance={"-"}
           className={classes.ethMargin}
+          grey={!account || chainId !== 1}
         />
         <BalanceContainer
           isEth={false}
-          balance={"50"}
+          balance={"-"}
           className={classes.wethMargin}
+          grey={!account || chainId !== 1}
         />
         <Divider className={classes.divider} />
         <Typography className={classes.instructions}>
@@ -47,7 +53,12 @@ const MainContent = () => {
           <ButtonBase
             className={[
               classes.optionBase,
-              wrapEtherSelected ? classes.optionSelected : null
+              wrapEtherSelected
+                ? classes.optionSelected
+                : classes.optionTextDeselected,
+              !account || chainId !== 1
+                ? classes.ethOptionDisabled
+                : classes.hoverEffect
             ].join(" ")}
             onClick={() => setWrapEther()}
             disableRipple
@@ -66,7 +77,12 @@ const MainContent = () => {
           <ButtonBase
             className={[
               classes.optionBase,
-              !wrapEtherSelected ? classes.optionSelected : null
+              !wrapEtherSelected
+                ? classes.optionSelected
+                : classes.optionTextDeselected,
+              !account || chainId !== 1
+                ? classes.wethOptionDisabled
+                : classes.hoverEffect
             ].join(" ")}
             onClick={() => setUnwrapEther()}
             disableRipple
@@ -83,11 +99,18 @@ const MainContent = () => {
             </Typography>
           </ButtonBase>
         </div>
-        <InputContainer isEth={wrapEtherSelected} />
+        <InputContainer
+          isEth={wrapEtherSelected}
+          disabled={!account || chainId !== 1}
+        />
         <MainButton
           mainButtonText={"Wrap"}
           classNameText={classes.wrapText}
-          classNameButton={classes.wrapButton}
+          classNameButton={
+            !account || chainId !== 1
+              ? classes.wrapButtonDisabled
+              : classes.wrapButton
+          }
         />
       </div>
     </div>

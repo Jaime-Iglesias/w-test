@@ -38,6 +38,11 @@ const useStyles = makeStyles({
       }
     }
   },
+  maxButtonContainerDisabled: {
+    paddingRight: 18,
+    paddingTop: 15,
+    cursor: "default"
+  },
   maxButtonText: {
     fontSize: 16,
     fontFamily: "Rubik",
@@ -48,6 +53,13 @@ const useStyles = makeStyles({
     width: 60,
     height: 30,
     backgroundColor: "#2188ea",
+    borderRadius: 2,
+    cursor: "default"
+  },
+  disabledEth: {
+    width: 60,
+    height: 30,
+    backgroundColor: "#d1d1d1",
     borderRadius: 2,
     cursor: "default"
   },

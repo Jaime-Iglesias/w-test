@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, ButtonBase } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
@@ -16,6 +16,12 @@ const RightHeaderContent = () => {
   const [open, setOpen] = useState(false);
 
   const { account, chainId, active } = context;
+
+  useEffect(() => {
+    if (account) {
+      setOpen(false);
+    }
+  }, [account]);
 
   const openWalletModal = () => {
     setOpen(true);

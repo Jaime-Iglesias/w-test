@@ -3,7 +3,7 @@ import { Typography, ButtonBase } from "@material-ui/core";
 
 import useStyles from "./styles";
 
-const BalanceContainer = ({ isEth, balance, className }) => {
+const BalanceContainer = ({ isEth, balance, className, grey }) => {
   const classes = useStyles();
 
   return (
@@ -11,7 +11,10 @@ const BalanceContainer = ({ isEth, balance, className }) => {
       <div style={{ flexGrow: 1 }}>
         <ButtonBase
           disableRipple
-          className={isEth ? classes.eth : classes.weth}
+          className={[
+            isEth ? classes.eth : classes.weth,
+            grey ? classes.disabled : ""
+          ].join(" ")}
         >
           <Typography className={classes.innerText}>
             {isEth ? "ETH" : "WETH"}
