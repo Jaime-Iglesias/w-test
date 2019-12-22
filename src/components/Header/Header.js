@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, ButtonBase } from "@material-ui/core";
+import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import WalletModal from "../WalletModal/WalletModal";
@@ -9,7 +9,7 @@ import useStyles from "./styles";
 const compressAddress = address =>
   `${address.slice(0, 6)}...${address.slice(-4)}`;
 
-const RightHeaderContent = () => {
+const RightHeaderContent = ({ isPending }) => {
   const context = useWeb3React();
   const classes = useStyles();
 
@@ -50,7 +50,14 @@ const RightHeaderContent = () => {
       {account && chainId === 1 && (
         <ButtonBase className={classes.addressButton} disableRipple>
           <div className={classes.bulletPointWrapper}>
-            <span className={classes.bulletPoint}>⚫</span>
+            {isPending ? (
+              <CircularProgress
+                size={12}
+                className={classes.circularProgress}
+              />
+            ) : (
+              <span className={classes.bulletPoint}>⚫</span>
+            )}
           </div>
           <Typography className={classes.addressButtonText}>
             {compressAddress(account)}
@@ -62,7 +69,7 @@ const RightHeaderContent = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ isPending }) => {
   const classes = useStyles();
 
   return (
@@ -75,7 +82,7 @@ const Header = () => {
         />
         <Typography className={classes.convertText}>Convert</Typography>
       </div>
-      <RightHeaderContent />
+      <RightHeaderContent isPending={isPending} />
     </div>
   );
 };

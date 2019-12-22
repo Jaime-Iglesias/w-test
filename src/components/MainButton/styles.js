@@ -59,6 +59,11 @@ const useStyles = makeStyles({
     fontWeight: 300,
     color: "#fd4848",
     marginTop: 35
+  },
+  circularProgress: {
+    "& > svg": {
+      color: "#ffffff"
+    }
   }
 });
 

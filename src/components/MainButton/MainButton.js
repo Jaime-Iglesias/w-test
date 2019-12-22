@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, ButtonBase } from "@material-ui/core";
+import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
@@ -27,7 +27,16 @@ const setButtonType = (
             disableRipple
             onClick={() => wrapEther()}
           >
-            <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
+            {!isPending ? (
+              <Typography className={classes.mainButtonTextBase}>
+                Wrap
+              </Typography>
+            ) : (
+              <CircularProgress
+                size={22}
+                className={classes.circularProgress}
+              />
+            )}
           </ButtonBase>
         </>
       );
@@ -45,9 +54,16 @@ const setButtonType = (
             disableRipple
             onClick={() => unwrapEther()}
           >
-            <Typography className={classes.mainButtonTextBase}>
-              Unwrap
-            </Typography>
+            {!isPending ? (
+              <Typography className={classes.mainButtonTextBase}>
+                Unwrap
+              </Typography>
+            ) : (
+              <CircularProgress
+                size={22}
+                className={classes.circularProgress}
+              />
+            )}
           </ButtonBase>
         </>
       );
@@ -115,29 +131,45 @@ const MainButton = ({
   submitButtonStatus,
   inputAmount,
   wethContract,
-  wethAddress
+  wethAddress,
+  isPending,
+  setIsPending,
+  setInputAmount
 }) => {
   const classes = useStyles();
   const context = useWeb3React();
   const { account, library, chainId } = context;
 
-  const [isPending, setIsPending] = useState(false);
-
   const wrapEther = async () => {
-    if (account && library && chainId === 1) {
-      const tx = await library.eth.sendTransaction({
-        from: account,
-        to: wethAddress,
-        value: library.utils.toWei(inputAmount, "ether")
-      });
+    if (account && library && chainId === 1 && inputAmount > 0) {
+      library.eth
+        .sendTransaction({
+          from: account,
+          to: wethAddress,
+          value: library.utils.toWei(inputAmount, "ether")
+        })
+        .on("transactionHash", () => {
+          setIsPending(true);
+          setInputAmount("");
+        })
+        .on("receipt", () => {
+          setIsPending(false);
+        });
     }
   };
 
   const unwrapEther = async () => {
-    if (account && library && chainId === 1) {
-      const tx = await wethContract.methods
+    if (account && library && chainId === 1 && inputAmount > 0) {
+      wethContract.methods
         .withdraw(library.utils.toWei(inputAmount, "ether"))
-        .send({ from: account });
+        .send({ from: account })
+        .on("transactionHash", () => {
+          setIsPending(true);
+          setInputAmount("");
+        })
+        .on("receipt", () => {
+          setIsPending(false);
+        });
     }
   };
 

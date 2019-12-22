@@ -8,6 +8,7 @@ import text from "./mainContentText";
 import BalanceContainer from "../BalanceContainer/BalanceContainer";
 import InputContainer from "../InputContainer/InputContainer";
 import MainButton from "../MainButton/MainButton";
+import Header from "../Header/Header";
 
 const MainContent = () => {
   const context = useWeb3React();
@@ -30,6 +31,7 @@ const MainContent = () => {
   const [wethBalance, setWethBalance] = useState("-");
   const [inputAmount, setInputAmount] = useState("");
   const [submitButtonStatus, setSubmitButtonStatus] = useState("disabled");
+  const [isPending, setIsPending] = useState(false);
 
   const setWrapEther = () => {
     if (!wrapEtherSelected && account && chainId === 1) {
@@ -76,7 +78,7 @@ const MainContent = () => {
       getEthBalance();
       getWethBalance();
     }
-  }, [account, chainId, library]);
+  }, [account, chainId, library, isPending]);
 
   useEffect(() => {
     if (wrapEtherSelected && account) {
@@ -95,91 +97,97 @@ const MainContent = () => {
   }, [wrapEtherSelected, inputAmount, ethBalance]);
 
   return (
-    <div className={classes.mainContent}>
-      <div className={classes.mainWrapper}>
-        <Typography className={classes.title}>{text.title}</Typography>
-        <Typography className={classes.subtitle}>{text.subtitle}</Typography>
-        <BalanceContainer
-          isEth={true}
-          balance={!account || chainId !== 1 ? "-" : ethBalance}
-          className={classes.ethMargin}
-          grey={!account || chainId !== 1}
-        />
-        <BalanceContainer
-          isEth={false}
-          balance={!account || chainId !== 1 ? "-" : wethBalance}
-          className={classes.wethMargin}
-          grey={!account || chainId !== 1}
-        />
-        <Divider className={classes.divider} />
-        <Typography className={classes.instructions}>
-          {text.instructions}
-        </Typography>
-        <div className={classes.optionsContainer}>
-          <ButtonBase
-            className={[
-              classes.optionBase,
-              wrapEtherSelected
-                ? classes.optionSelected
-                : classes.optionTextDeselected,
-              !account || chainId !== 1
-                ? classes.ethOptionDisabled
-                : classes.hoverEffect
-            ].join(" ")}
-            onClick={() => setWrapEther()}
-            disableRipple
-          >
-            <Typography
+    <>
+      <Header isPending={isPending} />
+      <div className={classes.mainContent}>
+        <div className={classes.mainWrapper}>
+          <Typography className={classes.title}>{text.title}</Typography>
+          <Typography className={classes.subtitle}>{text.subtitle}</Typography>
+          <BalanceContainer
+            isEth={true}
+            balance={!account || chainId !== 1 ? "-" : ethBalance}
+            className={classes.ethMargin}
+            grey={!account || chainId !== 1}
+          />
+          <BalanceContainer
+            isEth={false}
+            balance={!account || chainId !== 1 ? "-" : wethBalance}
+            className={classes.wethMargin}
+            grey={!account || chainId !== 1}
+          />
+          <Divider className={classes.divider} />
+          <Typography className={classes.instructions}>
+            {text.instructions}
+          </Typography>
+          <div className={classes.optionsContainer}>
+            <ButtonBase
               className={[
-                classes.optionTextBase,
+                classes.optionBase,
                 wrapEtherSelected
-                  ? classes.optionTextSelected
-                  : classes.optionTextDeselected
+                  ? classes.optionSelected
+                  : classes.optionTextDeselected,
+                !account || chainId !== 1
+                  ? classes.ethOptionDisabled
+                  : classes.hoverEffect
               ].join(" ")}
+              onClick={() => setWrapEther()}
+              disableRipple
             >
-              {text.wrapEther}
-            </Typography>
-          </ButtonBase>
-          <ButtonBase
-            className={[
-              classes.optionBase,
-              !wrapEtherSelected
-                ? classes.optionSelected
-                : classes.optionTextDeselected,
-              !account || chainId !== 1
-                ? classes.wethOptionDisabled
-                : classes.hoverEffect
-            ].join(" ")}
-            onClick={() => setUnwrapEther()}
-            disableRipple
-          >
-            <Typography
+              <Typography
+                className={[
+                  classes.optionTextBase,
+                  wrapEtherSelected
+                    ? classes.optionTextSelected
+                    : classes.optionTextDeselected
+                ].join(" ")}
+              >
+                {text.wrapEther}
+              </Typography>
+            </ButtonBase>
+            <ButtonBase
               className={[
-                classes.optionTextBase,
+                classes.optionBase,
                 !wrapEtherSelected
-                  ? classes.optionTextSelected
-                  : classes.optionTextDeselected
+                  ? classes.optionSelected
+                  : classes.optionTextDeselected,
+                !account || chainId !== 1
+                  ? classes.wethOptionDisabled
+                  : classes.hoverEffect
               ].join(" ")}
+              onClick={() => setUnwrapEther()}
+              disableRipple
             >
-              {text.unwrapWeth}
-            </Typography>
-          </ButtonBase>
+              <Typography
+                className={[
+                  classes.optionTextBase,
+                  !wrapEtherSelected
+                    ? classes.optionTextSelected
+                    : classes.optionTextDeselected
+                ].join(" ")}
+              >
+                {text.unwrapWeth}
+              </Typography>
+            </ButtonBase>
+          </div>
+          <InputContainer
+            isEth={wrapEtherSelected}
+            disabled={!account || chainId !== 1}
+            inputAmount={inputAmount}
+            handleInputChange={handleInputChange}
+            setMax={setMax}
+          />
+          <MainButton
+            submitButtonStatus={submitButtonStatus}
+            wethAddress={wethAddress}
+            wethContract={wethContract}
+            inputAmount={inputAmount}
+            isPending={isPending}
+            setIsPending={setIsPending}
+            setInputAmount={setInputAmount}
+          />
         </div>
-        <InputContainer
-          isEth={wrapEtherSelected}
-          disabled={!account || chainId !== 1}
-          inputAmount={inputAmount}
-          handleInputChange={handleInputChange}
-          setMax={setMax}
-        />
-        <MainButton
-          submitButtonStatus={submitButtonStatus}
-          wethAddress={wethAddress}
-          wethContract={wethContract}
-          inputAmount={inputAmount}
-        />
       </div>
-    </div>
+    </>
   );
 };
 

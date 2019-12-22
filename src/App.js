@@ -4,7 +4,6 @@ import Web3 from "web3";
 import { Web3ReactProvider } from "@web3-react/core";
 
 import theme from "./theme";
-import Header from "./components/Header/Header";
 import MainContent from "./components/MainContent/MainContent";
 
 const useStyles = makeStyles({
@@ -31,7 +30,6 @@ const App = () => {
     <Web3ReactProvider getLibrary={getLibrary}>
       <ThemeProvider theme={theme}>
         <div className={classes.root}>
-          <Header />
           <MainContent />
         </div>
       </ThemeProvider>
