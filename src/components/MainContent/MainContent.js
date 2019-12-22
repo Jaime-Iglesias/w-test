@@ -183,16 +183,10 @@ const MainContent = () => {
           handleInputChange={handleInputChange}
           setMax={setMax}
         />
-        <div className={classes.mainButtonContainer}>
-          <MainButton
-            submitButtonStatus={submitButtonStatus}
-            classNameButton={
-              !account || chainId !== 1
-                ? classes.wrapButtonDisabled
-                : classes.wrapButton
-            }
-          />
-        </div>
+        <MainButton
+          submitButtonStatus={submitButtonStatus}
+          inputAmount={inputAmount}
+        />
       </div>
     </div>
   );

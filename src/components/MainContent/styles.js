@@ -86,9 +86,6 @@ const useStyles = makeStyles({
     "&:hover": {
       border: "1px solid #dddddd"
     }
-  },
-  mainButtonContainer: {
-    marginTop: 105
   }
 });
 
