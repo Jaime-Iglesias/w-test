@@ -11,6 +11,7 @@ const InputContainer = ({
   setMax
 }) => {
   const classes = useStyles();
+  // fuzzy find
 
   return (
     <div className={classes.containerBase}>

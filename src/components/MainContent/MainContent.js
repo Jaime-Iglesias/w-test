@@ -28,7 +28,9 @@ const MainContent = () => {
   const [wrapEtherSelected, setWrapEtherSelected] = useState(true);
   const [ethBalance, setEthBalance] = useState("-");
   const [wethBalance, setWethBalance] = useState("-");
+  const [wethAllowance, setWethAllowance] = useState("");
   const [inputAmount, setInputAmount] = useState("");
+  const [submitButtonStatus, setSubmitButtonStatus] = useState("disabled");
 
   const setWrapEther = () => {
     if (!wrapEtherSelected && account && chainId === 1) {
@@ -60,6 +62,13 @@ const MainContent = () => {
     setWethBalance(wethFixed);
   };
 
+  const checkWethAllowance = async () => {
+    const allowance = await wethContract.methods
+      .allowance(account, wethAddress)
+      .call();
+    setWethAllowance(allowance);
+  };
+
   const setMax = () => {
     wrapEtherSelected
       ? setInputAmount(ethBalance)
@@ -74,8 +83,27 @@ const MainContent = () => {
     if (account && chainId === 1 && library) {
       getEthBalance();
       getWethBalance();
+      checkWethAllowance();
     }
   }, [account, chainId, library]);
+
+  useEffect(() => {
+    if (wrapEtherSelected && account) {
+      if (inputAmount > ethBalance) {
+        setSubmitButtonStatus("insufficientEth");
+      } else {
+        setSubmitButtonStatus("wrap");
+      }
+    } else if (!wrapEtherSelected && account) {
+      if (wethAllowance < wethBalance) {
+        setSubmitButtonStatus("allowWeth");
+      } else if (inputAmount > wethBalance) {
+        setSubmitButtonStatus("insufficientWeth");
+      } else {
+        setSubmitButtonStatus("unwrap");
+      }
+    }
+  }, [wrapEtherSelected, inputAmount, ethBalance]);
 
   return (
     <div className={classes.mainContent}>
@@ -157,8 +185,7 @@ const MainContent = () => {
         />
         <div className={classes.mainButtonContainer}>
           <MainButton
-            mainButtonText={"Wrap"}
-            classNameText={classes.wrapText}
+            submitButtonStatus={submitButtonStatus}
             classNameButton={
               !account || chainId !== 1
                 ? classes.wrapButtonDisabled

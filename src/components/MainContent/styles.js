@@ -89,18 +89,6 @@ const useStyles = makeStyles({
   },
   mainButtonContainer: {
     marginTop: 105
-  },
-  wrapText: {
-    color: "#ffffff"
-  },
-  wrapButtonDisabled: {
-    backgroundColor: "#d1d1d1"
-  },
-  wrapButton: {
-    backgroundColor: "#0bd080",
-    "&:hover": {
-      border: "1px solid #dddddd"
-    }
   }
 });
 

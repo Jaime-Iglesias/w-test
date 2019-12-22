@@ -11,7 +11,29 @@ const useStyles = makeStyles({
   mainButtonTextBase: {
     fontFamily: "Rubik",
     fontSize: 18,
-    fontWeight: 300
+    fontWeight: 300,
+    color: "#ffffff"
+  },
+  wrapButtonDisabled: {
+    backgroundColor: "#d1d1d1"
+  },
+  wrapCase: {
+    backgroundColor: "#0bd080",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
+  },
+  allowanceCase: {
+    backgroundColor: "#4a4a4a",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
+  },
+  errorCase: {
+    backgroundColor: "#fd4848",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
   }
 });
 

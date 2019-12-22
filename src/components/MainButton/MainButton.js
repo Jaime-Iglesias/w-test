@@ -3,20 +3,96 @@ import { Typography, ButtonBase } from "@material-ui/core";
 
 import useStyles from "./styles";
 
-const MainButton = ({ classNameButton, classNameText, mainButtonText }) => {
+const setButtonType = (submitButtonStatus, classes) => {
+  switch (submitButtonStatus) {
+    case "wrap":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
+        </ButtonBase>
+      );
+    case "unwrap":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>Unwrap</Typography>
+        </ButtonBase>
+      );
+    case "insufficientEth":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.errrorCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>
+            Insufficient ETH Balance
+          </Typography>
+        </ButtonBase>
+      );
+    case "insufficientWeth":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.errorCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>
+            Insufficient WETH Balance
+          </Typography>
+        </ButtonBase>
+      );
+    case "allowWeth":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.allowanceCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>
+            Set WETH Allowance
+          </Typography>
+        </ButtonBase>
+      );
+    case "disabled":
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.wrapButtonDisabled].join(
+            " "
+          )}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
+        </ButtonBase>
+      );
+    default:
+      return (
+        <ButtonBase
+          className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
+          disableRipple
+        >
+          <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
+        </ButtonBase>
+      );
+  }
+};
+
+const MainButton = ({
+  submitButtonStatus,
+  classNameDescription,
+  description
+}) => {
   const classes = useStyles();
 
   return (
-    <ButtonBase
-      className={[classes.mainButtonBase, classNameButton].join(" ")}
-      disableRipple
-    >
-      <Typography
-        className={[classes.mainButtonTextBase, classNameText].join(" ")}
-      >
-        {mainButtonText}
-      </Typography>
-    </ButtonBase>
+    <>
+      <div className={classes.description}>
+        <Typography className={classNameDescription}>{description}</Typography>
+      </div>
+      {setButtonType(submitButtonStatus, classes)}
+    </>
   );
 };
 
