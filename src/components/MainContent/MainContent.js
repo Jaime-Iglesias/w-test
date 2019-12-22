@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Divider, ButtonBase } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
@@ -15,6 +15,8 @@ const MainContent = () => {
   const classes = useStyles();
 
   const [wrapEtherSelected, setWrapEtherSelected] = useState(true);
+  const [ethBalance, setEthBalance] = useState("-");
+  const [wethBalance, setWethBalance] = useState("-");
 
   const setWrapEther = () => {
     if (!wrapEtherSelected && account && chainId === 1) {
@@ -28,6 +30,22 @@ const MainContent = () => {
     }
   };
 
+  const getEthBalance = async () => {
+    const balance = await library.eth.getBalance(account);
+    const eth = library.utils.fromWei(balance, "ether");
+    const ethFixed = parseFloat(eth)
+      .toFixed(4)
+      .toString();
+    console.log(ethFixed);
+    setEthBalance(ethFixed);
+  };
+
+  useEffect(() => {
+    if (account && chainId === 1 && library) {
+      getEthBalance();
+    }
+  }, [account, chainId, library]);
+
   return (
     <div className={classes.mainContent}>
       <div className={classes.mainWrapper}>
@@ -35,13 +53,13 @@ const MainContent = () => {
         <Typography className={classes.subtitle}>{text.subtitle}</Typography>
         <BalanceContainer
           isEth={true}
-          balance={"-"}
+          balance={!account || chainId !== 1 ? "-" : ethBalance}
           className={classes.ethMargin}
           grey={!account || chainId !== 1}
         />
         <BalanceContainer
           isEth={false}
-          balance={"-"}
+          balance={!account || chainId !== 1 ? "-" : wethBalance}
           className={classes.wethMargin}
           grey={!account || chainId !== 1}
         />
