@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Typography, Divider, ButtonBase } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
+import { abi, wethAddress } from "../../abi";
 import text from "./mainContentText";
 import BalanceContainer from "../BalanceContainer/BalanceContainer";
 import InputContainer from "../InputContainer/InputContainer";
@@ -11,6 +12,16 @@ import MainButton from "../MainButton/MainButton";
 const MainContent = () => {
   const context = useWeb3React();
   const { account, library, chainId } = context;
+
+  const newWethContract = (abi, wethAddress) => {
+    if (library) {
+      return new library.eth.Contract(abi, wethAddress);
+    }
+  };
+
+  const wethContract = useMemo(() => newWethContract(abi, wethAddress), [
+    library
+  ]);
 
   const classes = useStyles();
 
@@ -36,13 +47,22 @@ const MainContent = () => {
     const ethFixed = parseFloat(eth)
       .toFixed(4)
       .toString();
-    console.log(ethFixed);
     setEthBalance(ethFixed);
+  };
+
+  const getWethBalance = async () => {
+    const balance = await wethContract.methods.balanceOf(account).call();
+    const weth = library.utils.fromWei(balance, "ether");
+    const wethFixed = parseFloat(weth)
+      .toFixed(4)
+      .toString();
+    setWethBalance(wethFixed);
   };
 
   useEffect(() => {
     if (account && chainId === 1 && library) {
       getEthBalance();
+      getWethBalance();
     }
   }, [account, chainId, library]);
 
@@ -120,6 +140,8 @@ const MainContent = () => {
         <InputContainer
           isEth={wrapEtherSelected}
           disabled={!account || chainId !== 1}
+          ethBalance={ethBalance}
+          wethBalance={wethBalance}
         />
         <MainButton
           mainButtonText={"Wrap"}
