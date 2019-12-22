@@ -58,7 +58,11 @@ const useStyles = makeStyles({
   optionBase: {
     height: "100%",
     width: "100%",
-    borderRadius: 2
+    boxShadow: "3px 9px 15px 0 rgba(0, 0, 0, 0.07)",
+    borderRadius: 2,
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
   },
   optionSelected: {
     backgroundColor: "#0bd080"
@@ -73,6 +77,15 @@ const useStyles = makeStyles({
   },
   optionTextDeselected: {
     color: "#4a4a4a"
+  },
+  wrapText: {
+    color: "#ffffff"
+  },
+  wrapButton: {
+    backgroundColor: "#0bd080",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
   }
 });
 

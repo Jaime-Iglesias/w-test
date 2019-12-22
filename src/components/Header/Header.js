@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Typography, ButtonBase } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
+import WalletModal from "../WalletModal/WalletModal";
+import ParadigmFull from "../../assets/paradigm_full.png";
 import useStyles from "./styles";
 
 const compressAddress = address =>
@@ -11,27 +13,42 @@ const RightHeaderContent = () => {
   const context = useWeb3React();
   const classes = useStyles();
 
+  const [open, setOpen] = useState(false);
+
   const { account, chainId, active } = context;
+
+  const openWalletModal = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className={classes.rightContentContainer}>
       {!active && (
-        <ButtonBase className={classes.connectButton}>
+        <ButtonBase
+          className={classes.connectButton}
+          onClick={() => openWalletModal()}
+          disableRipple
+        >
           <Typography className={classes.buttonText}>Connect Wallet</Typography>
         </ButtonBase>
       )}
       {chainId !== 1 && active && (
-        <ButtonBase className={classes.wrongNetworkButton}>
+        <ButtonBase className={classes.wrongNetworkButton} disableRipple>
           <Typography className={classes.buttonText}>Wrong Network</Typography>
         </ButtonBase>
       )}
       {account && (
-        <ButtonBase className={classes.addressButton}>
+        <ButtonBase className={classes.addressButton} disableRipple>
           <Typography className={classes.addressButtonText}>
             {compressAddress(account)}
           </Typography>
         </ButtonBase>
       )}
+      <WalletModal open={open} handleClose={handleClose} />
     </div>
   );
 };
@@ -42,10 +59,12 @@ const Header = () => {
   return (
     <div className={classes.headerContainer}>
       <div className={classes.leftContent}>
-        <div className={classes.paradigmLogoPrimary}>
-          <Typography variant="h6">PARADIGM</Typography>
-        </div>
-        <Typography variant="subtitle2">Convert</Typography>
+        <img
+          src={ParadigmFull}
+          alt="paradigm-main"
+          className={classes.paradigmLogoPrimary}
+        />
+        <Typography className={classes.convertText}>Convert</Typography>
       </div>
       <RightHeaderContent />
     </div>

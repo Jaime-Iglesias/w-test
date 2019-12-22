@@ -22,6 +22,13 @@ const useStyles = makeStyles({
     marginLeft: 47,
     opacity: 0.47
   },
+  convertText: {
+    fontSize: 20,
+    marginTop: 2,
+    fontWeight: 300,
+    opacity: 0.25,
+    fontFamily: "NeueHaasUnicaW1G"
+  },
   rightContentContainer: {
     marginRight: 27
   },
@@ -34,7 +41,10 @@ const useStyles = makeStyles({
     width: 132,
     height: 33,
     borderRadius: 2,
-    backgroundColor: "#0bd080"
+    backgroundColor: "#0bd080",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
   },
   wrongNetworkButton: {
     width: 132,
@@ -46,7 +56,10 @@ const useStyles = makeStyles({
     width: 126,
     height: 27,
     border: "solid 1px #d1d1d1",
-    backgroundColor: "#f8f8f8"
+    backgroundColor: "#f8f8f8",
+    "&:hover": {
+      border: "1px solid #dddddd"
+    }
   },
   addressButtonText: {
     fontFamily: "DINPro",

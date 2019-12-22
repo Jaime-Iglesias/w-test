@@ -9,7 +9,10 @@ const BalanceContainer = ({ isEth, balance, className }) => {
   return (
     <div className={[classes.balanceContainer, className].join(" ")}>
       <div style={{ flexGrow: 1 }}>
-        <ButtonBase className={isEth ? classes.eth : classes.weth}>
+        <ButtonBase
+          disableRipple
+          className={isEth ? classes.eth : classes.weth}
+        >
           <Typography className={classes.innerText}>
             {isEth ? "ETH" : "WETH"}
           </Typography>
