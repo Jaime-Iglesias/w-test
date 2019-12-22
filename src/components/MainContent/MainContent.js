@@ -28,6 +28,7 @@ const MainContent = () => {
   const [wrapEtherSelected, setWrapEtherSelected] = useState(true);
   const [ethBalance, setEthBalance] = useState("-");
   const [wethBalance, setWethBalance] = useState("-");
+  const [inputAmount, setInputAmount] = useState("");
 
   const setWrapEther = () => {
     if (!wrapEtherSelected && account && chainId === 1) {
@@ -57,6 +58,16 @@ const MainContent = () => {
       .toFixed(4)
       .toString();
     setWethBalance(wethFixed);
+  };
+
+  const setMax = () => {
+    wrapEtherSelected
+      ? setInputAmount(ethBalance)
+      : setInputAmount(wethBalance);
+  };
+
+  const handleInputChange = e => {
+    setInputAmount(e.target.value);
   };
 
   useEffect(() => {
@@ -140,8 +151,9 @@ const MainContent = () => {
         <InputContainer
           isEth={wrapEtherSelected}
           disabled={!account || chainId !== 1}
-          ethBalance={ethBalance}
-          wethBalance={wethBalance}
+          inputAmount={inputAmount}
+          handleInputChange={handleInputChange}
+          setMax={setMax}
         />
         <MainButton
           mainButtonText={"Wrap"}

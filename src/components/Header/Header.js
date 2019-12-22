@@ -7,7 +7,7 @@ import ParadigmFull from "../../assets/paradigm_full.png";
 import useStyles from "./styles";
 
 const compressAddress = address =>
-  `${address.slice(0, 4)}...${address.slice(-4)}`;
+  `${address.slice(0, 6)}...${address.slice(-4)}`;
 
 const RightHeaderContent = () => {
   const context = useWeb3React();
@@ -47,8 +47,11 @@ const RightHeaderContent = () => {
           <Typography className={classes.buttonText}>Wrong Network</Typography>
         </ButtonBase>
       )}
-      {account && (
+      {account && chainId === 1 && (
         <ButtonBase className={classes.addressButton} disableRipple>
+          <div className={classes.bulletPointWrapper}>
+            <span className={classes.bulletPoint}>⚫</span>
+          </div>
           <Typography className={classes.addressButtonText}>
             {compressAddress(account)}
           </Typography>

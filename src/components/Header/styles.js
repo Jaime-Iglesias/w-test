@@ -50,22 +50,35 @@ const useStyles = makeStyles({
     width: 132,
     height: 33,
     borderRadius: 2,
-    backgroundColor: "#fd4848"
+    backgroundColor: "#fd4848",
+    cursor: "default"
   },
   addressButton: {
-    width: 126,
-    height: 27,
+    width: 132,
+    height: 33,
     border: "solid 1px #d1d1d1",
-    backgroundColor: "#f8f8f8",
-    "&:hover": {
-      border: "1px solid #dddddd"
-    }
+    borderRadius: 2,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
+  bulletPointWrapper: {
+    flexGrow: 1,
+    display: "flex",
+    justifyContent: "flex-start"
+  },
+  bulletPoint: {
+    color: "#0bd080",
+    fontSize: 16,
+    marginLeft: 5
   },
   addressButtonText: {
     fontFamily: "DINPro",
     fontSize: 14,
     fontWeight: 500,
-    color: "#bfbfbf"
+    color: "#bfbfbf",
+    marginRight: 7
   }
 });
 

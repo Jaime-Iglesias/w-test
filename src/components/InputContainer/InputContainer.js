@@ -3,13 +3,25 @@ import { InputBase, Typography, ButtonBase } from "@material-ui/core";
 
 import useStyles from "./styles";
 
-const InputContainer = ({ isEth, disabled }) => {
+const InputContainer = ({
+  isEth,
+  disabled,
+  inputAmount,
+  handleInputChange,
+  setMax
+}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.containerBase}>
       <div className={classes.inputFieldContainer}>
-        <InputBase className={classes.inputField} disabled={disabled} />
+        <InputBase
+          className={classes.inputField}
+          disabled={disabled}
+          onChange={e => handleInputChange(e)}
+          value={inputAmount}
+          placeholder="0"
+        />
       </div>
       <div className={classes.inputContentRight}>
         <div
@@ -19,7 +31,11 @@ const InputContainer = ({ isEth, disabled }) => {
               : classes.maxButtonContainer
           }
         >
-          <ButtonBase disableRipple disabled={disabled}>
+          <ButtonBase
+            disableRipple
+            disabled={disabled}
+            onClick={() => setMax()}
+          >
             <Typography className={classes.maxButtonText}>Max</Typography>
           </ButtonBase>
         </div>
