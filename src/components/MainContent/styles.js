@@ -87,6 +87,9 @@ const useStyles = makeStyles({
       border: "1px solid #dddddd"
     }
   },
+  mainButtonContainer: {
+    marginTop: 105
+  },
   wrapText: {
     color: "#ffffff"
   },

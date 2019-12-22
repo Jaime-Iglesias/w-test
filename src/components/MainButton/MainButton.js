@@ -7,18 +7,16 @@ const MainButton = ({ classNameButton, classNameText, mainButtonText }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.mainButtonContainer}>
-      <ButtonBase
-        className={[classes.mainButtonBase, classNameButton].join(" ")}
-        disableRipple
+    <ButtonBase
+      className={[classes.mainButtonBase, classNameButton].join(" ")}
+      disableRipple
+    >
+      <Typography
+        className={[classes.mainButtonTextBase, classNameText].join(" ")}
       >
-        <Typography
-          className={[classes.mainButtonTextBase, classNameText].join(" ")}
-        >
-          {mainButtonText}
-        </Typography>
-      </ButtonBase>
-    </div>
+        {mainButtonText}
+      </Typography>
+    </ButtonBase>
   );
 };
 

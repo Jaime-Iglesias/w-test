@@ -155,15 +155,17 @@ const MainContent = () => {
           handleInputChange={handleInputChange}
           setMax={setMax}
         />
-        <MainButton
-          mainButtonText={"Wrap"}
-          classNameText={classes.wrapText}
-          classNameButton={
-            !account || chainId !== 1
-              ? classes.wrapButtonDisabled
-              : classes.wrapButton
-          }
-        />
+        <div className={classes.mainButtonContainer}>
+          <MainButton
+            mainButtonText={"Wrap"}
+            classNameText={classes.wrapText}
+            classNameButton={
+              !account || chainId !== 1
+                ? classes.wrapButtonDisabled
+                : classes.wrapButton
+            }
+          />
+        </div>
       </div>
     </div>
   );

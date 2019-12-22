@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
-  mainButtonContainer: {
-    marginTop: 105
-  },
   mainButtonBase: {
     width: 248,
     maxWidth: 248,
