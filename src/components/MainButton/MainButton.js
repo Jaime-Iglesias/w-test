@@ -23,10 +23,11 @@ const setButtonType = (submitButtonStatus, classes) => {
           <Typography className={classes.mainButtonTextBase}>Unwrap</Typography>
         </ButtonBase>
       );
-    case "insufficientEth":
+    case "lessEth":
+      console.log("less eth");
       return (
         <ButtonBase
-          className={[classes.mainButtonBase, classes.errrorCase].join(" ")}
+          className={[classes.mainButtonBase, classes.errorCase].join(" ")}
           disableRipple
         >
           <Typography className={classes.mainButtonTextBase}>
@@ -34,7 +35,8 @@ const setButtonType = (submitButtonStatus, classes) => {
           </Typography>
         </ButtonBase>
       );
-    case "insufficientWeth":
+    case "lessWeth":
+      console.log("less weth");
       return (
         <ButtonBase
           className={[classes.mainButtonBase, classes.errorCase].join(" ")}

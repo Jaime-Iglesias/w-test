@@ -90,7 +90,7 @@ const MainContent = () => {
   useEffect(() => {
     if (wrapEtherSelected && account) {
       if (inputAmount > ethBalance) {
-        setSubmitButtonStatus("insufficientEth");
+        setSubmitButtonStatus("lessEth");
       } else {
         setSubmitButtonStatus("wrap");
       }
@@ -98,7 +98,7 @@ const MainContent = () => {
       if (wethAllowance < wethBalance) {
         setSubmitButtonStatus("allowWeth");
       } else if (inputAmount > wethBalance) {
-        setSubmitButtonStatus("insufficientWeth");
+        setSubmitButtonStatus("lessWeth");
       } else {
         setSubmitButtonStatus("unwrap");
       }
