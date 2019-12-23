@@ -46,7 +46,7 @@ const WalletModal = ({ open, handleClose }) => {
     <Dialog
       open={open}
       onClose={handleClose}
-      styles={shouldScale ? { scale: 0.7 } : {}}
+      classes={!shouldScale ? { paper: classes.scaleDown } : {}}
     >
       <div className={classes.wrapper}>
         <Typography className={classes.title}>Connect Your Wallet</Typography>

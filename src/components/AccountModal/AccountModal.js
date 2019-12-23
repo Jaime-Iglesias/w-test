@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Dialog, Typography, ButtonBase, Divider } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 

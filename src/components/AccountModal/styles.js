@@ -7,8 +7,7 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     maxWidth: 460,
-    maxHeight: 249,
-    width: 460,
+    width: "90%",
     height: 249
   },
   title: {

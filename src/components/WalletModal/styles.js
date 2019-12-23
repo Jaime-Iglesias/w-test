@@ -15,7 +15,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     height: 381,
     maxWidth: 461,
-    width: "100%",
     "& > div > button:nth-of-type(odd)": {
       marginRight: 7
     },
@@ -23,15 +22,13 @@ const useStyles = makeStyles({
       marginLeft: 7
     }
   },
-  wrapperScaled: {
-    scale: 0.7
-  },
   optionContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: 172,
+    maxWidth: 172,
+    width: "43%",
     height: 112,
     borderRadius: 2,
     border: "solid 1px #ededed",
