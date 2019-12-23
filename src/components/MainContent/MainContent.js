@@ -194,7 +194,6 @@ const MainContent = () => {
             setIsPending={setIsPending}
             setInputAmount={setInputAmount}
             setSessionTransactions={setSessionTransactions}
-            sessionTransactions={sessionTransactions}
           />
         </div>
       </div>

@@ -44,7 +44,8 @@ const useStyles = makeStyles({
     fontFamily: "Rubik",
     fontSize: 14,
     opacity: 0.25,
-    fontWeight: 300
+    fontWeight: 300,
+    textAlign: "center"
   },
   optionsContainer: {
     marginTop: 33,

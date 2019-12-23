@@ -44,14 +44,16 @@ const useStyles = makeStyles({
     fontSize: 14,
     fontWeight: 300,
     color: "#838383",
-    marginTop: 32
+    marginTop: 32,
+    textAlign: "center"
   },
   baseDescBottom: {
     marginTop: 3,
     fontFamily: "Rubik",
     fontSize: 14,
     color: "#d1d1d1",
-    fontWeight: 300
+    fontWeight: 300,
+    textAlign: "center"
   },
   baseDescError: {
     fontFamily: "Rubik",

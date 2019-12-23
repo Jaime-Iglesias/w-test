@@ -135,8 +135,7 @@ const MainButton = ({
   isPending,
   setIsPending,
   setInputAmount,
-  setSessionTransactions,
-  sessionTransactions
+  setSessionTransactions
 }) => {
   const classes = useStyles();
   const context = useWeb3React();

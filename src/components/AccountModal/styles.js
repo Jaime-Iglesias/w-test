@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
   transactionText: {
     marginLeft: 25,
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 12,
     color: "#4a4a4a",
     "&:hover": {
@@ -61,7 +61,7 @@ const useStyles = makeStyles({
   },
   transactionTimestamp: {
     marginRight: 25,
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 12,
     fontWeight: 300,
     color: "#d1d1d1"

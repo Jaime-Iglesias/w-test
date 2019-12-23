@@ -20,7 +20,8 @@ const useStyles = makeStyles({
     paddingLeft: 30,
     height: 64,
     fontSize: 30,
-    color: "#4a4a4a"
+    color: "#4a4a4a",
+    fontFamily: "DINPro-Regular"
   },
   inputContentRight: {
     height: "100%",
@@ -78,7 +79,7 @@ const useStyles = makeStyles({
     cursor: "default"
   },
   selectionText: {
-    fontFamily: "DINPro Regular",
+    fontFamily: "DINPro-Regular",
     fontSize: 22,
     letterSpacing: 1.4,
     color: "#ffffff",

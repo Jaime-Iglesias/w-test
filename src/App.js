@@ -1,9 +1,8 @@
 import React from "react";
-import { makeStyles, ThemeProvider } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 import Web3 from "web3";
 import { Web3ReactProvider } from "@web3-react/core";
 
-import theme from "./theme";
 import MainContent from "./components/MainContent/MainContent";
 
 const useStyles = makeStyles({
@@ -28,11 +27,9 @@ const App = () => {
 
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <MainContent />
-        </div>
-      </ThemeProvider>
+      <div className={classes.root}>
+        <MainContent />
+      </div>
     </Web3ReactProvider>
   );
 };

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   title: {
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 32,
     color: "#404040",
     marginTop: 28,
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
   optionText: {
     fontSize: 16,
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     marginTop: 7
   },
   metamask: {

@@ -26,14 +26,14 @@ const useStyles = makeStyles({
     backgroundColor: "#d1d1d1"
   },
   innerText: {
-    fontFamily: "DINPro Regular",
+    fontFamily: "DINPro-Regular",
     fontSize: 22,
     letterSpacing: 1.4,
     color: "#ffffff",
     fontWeight: "bold"
   },
   balanceText: {
-    fontFamily: "DINPro Regular",
+    fontFamily: "DINPro-Regular",
     fontSize: 18,
     fontWeight: 500,
     color: "#4a4a4a"
