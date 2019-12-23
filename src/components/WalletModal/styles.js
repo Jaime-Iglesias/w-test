@@ -8,13 +8,16 @@ const useStyles = makeStyles({
     marginTop: 28,
     marginBottom: 32
   },
+  titleSmall: {
+    fontSize: 24
+  },
   wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
     height: 381,
-    maxWidth: 461,
+    width: 461,
     "& > div > button:nth-of-type(odd)": {
       marginRight: 7
     },
@@ -22,13 +25,19 @@ const useStyles = makeStyles({
       marginLeft: 7
     }
   },
+  gridContainerSmall: {
+    width: 290
+  },
+  wrapperSmall: {
+    width: 290
+  },
   optionContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     maxWidth: 172,
-    width: "43%",
+    width: "33%",
     height: 112,
     borderRadius: 2,
     border: "solid 1px #ededed",

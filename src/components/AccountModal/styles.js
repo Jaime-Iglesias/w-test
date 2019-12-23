@@ -6,8 +6,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    maxWidth: 460,
-    width: "90%",
+    width: 460,
     height: 249
   },
   title: {

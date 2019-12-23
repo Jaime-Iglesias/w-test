@@ -38,7 +38,7 @@ const WalletModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const context = useWeb3React();
 
-  const shouldScale = useMediaQuery("(min-width: 500px)");
+  const shouldScale = useMediaQuery("(min-width: 430px)");
 
   const { activate } = context;
 
@@ -48,9 +48,27 @@ const WalletModal = ({ open, handleClose }) => {
       onClose={handleClose}
       classes={!shouldScale ? { paper: classes.scaleDown } : {}}
     >
-      <div className={classes.wrapper}>
-        <Typography className={classes.title}>Connect Your Wallet</Typography>
-        <Grid container flex="row" justify="center" alignItems="flex-start">
+      <div
+        className={[
+          classes.wrapper,
+          !shouldScale ? classes.wrapperSmall : ""
+        ].join(" ")}
+      >
+        <Typography
+          className={[
+            classes.title,
+            !shouldScale ? classes.titleSmall : ""
+          ].join(" ")}
+        >
+          Connect Your Wallet
+        </Typography>
+        <Grid
+          container
+          className={!shouldScale ? classes.gridContainerSmall : ""}
+          flex="row"
+          justify="center"
+          alignItems="flex-start"
+        >
           {setWallets(classes, activate, walletByName).map(obj => (
             <WalletOptionContainer
               icon={obj.icon}
