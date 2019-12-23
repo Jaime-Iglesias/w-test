@@ -19,7 +19,13 @@ const useStyles = makeStyles({
     width: 142,
     height: 31,
     marginRight: 8,
-    marginLeft: 47,
+    marginLeft: "3%",
+    opacity: 0.47
+  },
+  paradigmLogoSmall: {
+    marginLeft: "5%",
+    height: 26,
+    width: 26,
     opacity: 0.47
   },
   convertText: {
@@ -30,7 +36,7 @@ const useStyles = makeStyles({
     fontFamily: "neue-haas-unica"
   },
   rightContentContainer: {
-    marginRight: 27
+    marginRight: "2.5%"
   },
   buttonText: {
     fontFamily: "Rubik",

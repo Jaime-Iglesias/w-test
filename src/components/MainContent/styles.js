@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     marginTop: 43,
     maxWidth: 556,
-    width: "38%"
+    width: "89%"
   },
   title: {
     fontFamily: "Rubik",

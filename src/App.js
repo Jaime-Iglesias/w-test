@@ -15,6 +15,9 @@ const useStyles = makeStyles({
     minWidth: "100%",
     top: 0,
     left: 0
+  },
+  rootScaled: {
+    scale: 0.7
   }
 });
 

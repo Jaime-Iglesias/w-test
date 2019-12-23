@@ -14,13 +14,17 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     height: 381,
-    width: 461,
+    maxWidth: 461,
+    width: "100%",
     "& > div > button:nth-of-type(odd)": {
       marginRight: 7
     },
     "& > div > button:nth-of-type(even)": {
       marginLeft: 7
     }
+  },
+  wrapperScaled: {
+    scale: 0.7
   },
   optionContainer: {
     display: "flex",

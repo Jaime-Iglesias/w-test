@@ -1,5 +1,11 @@
 import React from "react";
-import { Grid, Typography, Dialog, ButtonBase } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Dialog,
+  ButtonBase,
+  useMediaQuery
+} from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import { injected, trezor, ledger } from "../../connectors";
@@ -32,10 +38,16 @@ const WalletModal = ({ open, handleClose }) => {
   const classes = useStyles();
   const context = useWeb3React();
 
+  const shouldScale = useMediaQuery("(min-width: 500px)");
+
   const { activate } = context;
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      styles={shouldScale ? { scale: 0.7 } : {}}
+    >
       <div className={classes.wrapper}>
         <Typography className={classes.title}>Connect Your Wallet</Typography>
         <Grid container flex="row" justify="center" alignItems="flex-start">

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
+import {
+  Typography,
+  ButtonBase,
+  CircularProgress,
+  useMediaQuery
+} from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import AccountModal from "../AccountModal/AccountModal";
 import WalletModal from "../WalletModal/WalletModal";
 import ParadigmFull from "../../assets/paradigm_full.png";
+import ParadigmP from "../../assets/paradigm_small.png";
 import useStyles from "./styles";
 
 const compressAddress = address =>
@@ -94,15 +100,27 @@ const RightHeaderContent = ({ isPending, transactions }) => {
 const Header = ({ isPending, transactions }) => {
   const classes = useStyles();
 
+  const logoType = useMediaQuery("(min-width:780px)");
+
   return (
     <div className={classes.headerContainer}>
       <div className={classes.leftContent}>
-        <img
-          src={ParadigmFull}
-          alt="paradigm-main"
-          className={classes.paradigmLogoPrimary}
-        />
-        <Typography className={classes.convertText}>Convert</Typography>
+        {logoType ? (
+          <>
+            <img
+              src={ParadigmFull}
+              alt="paradigm-main"
+              className={classes.paradigmLogoPrimary}
+            />
+            <Typography className={classes.convertText}>Convert</Typography>
+          </>
+        ) : (
+          <img
+            src={ParadigmP}
+            alt="paradigm-small"
+            className={classes.paradigmLogoSmall}
+          />
+        )}
       </div>
       <RightHeaderContent isPending={isPending} transactions={transactions} />
     </div>
