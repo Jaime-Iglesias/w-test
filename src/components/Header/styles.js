@@ -61,7 +61,10 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#f8f8f8"
+    }
   },
   bulletPointWrapper: {
     flexGrow: 1,
