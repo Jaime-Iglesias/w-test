@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
@@ -134,7 +134,9 @@ const MainButton = ({
   wethAddress,
   isPending,
   setIsPending,
-  setInputAmount
+  setInputAmount,
+  setSessionTransactions,
+  sessionTransactions
 }) => {
   const classes = useStyles();
   const context = useWeb3React();
@@ -148,9 +150,19 @@ const MainButton = ({
           to: wethAddress,
           value: library.utils.toWei(inputAmount, "ether")
         })
-        .on("transactionHash", () => {
+        .on("transactionHash", txHash => {
           setIsPending(true);
           setInputAmount("");
+          let d = new Date();
+          let timestamp = d.toLocaleString();
+          const transaction = {
+            hash: txHash,
+            timestamp: timestamp
+          };
+          setSessionTransactions(transactions => [
+            transaction,
+            ...transactions
+          ]);
         })
         .on("receipt", () => {
           setIsPending(false);
@@ -163,9 +175,19 @@ const MainButton = ({
       wethContract.methods
         .withdraw(library.utils.toWei(inputAmount, "ether"))
         .send({ from: account })
-        .on("transactionHash", () => {
+        .on("transactionHash", txHash => {
           setIsPending(true);
           setInputAmount("");
+          let d = new Date();
+          let timestamp = d.toLocaleString();
+          const transaction = {
+            hash: txHash,
+            timestamp: timestamp
+          };
+          setSessionTransactions(transactions => [
+            transaction,
+            ...transactions
+          ]);
         })
         .on("receipt", () => {
           setIsPending(false);

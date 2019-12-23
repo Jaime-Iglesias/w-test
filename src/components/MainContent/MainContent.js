@@ -32,6 +32,7 @@ const MainContent = () => {
   const [inputAmount, setInputAmount] = useState("");
   const [submitButtonStatus, setSubmitButtonStatus] = useState("disabled");
   const [isPending, setIsPending] = useState(false);
+  const [sessionTransactions, setSessionTransactions] = useState([]);
 
   const setWrapEther = () => {
     if (!wrapEtherSelected && account && chainId === 1) {
@@ -78,7 +79,7 @@ const MainContent = () => {
       getEthBalance();
       getWethBalance();
     }
-  }, [account, chainId, library, isPending]);
+  }, [account, chainId, library, isPending, sessionTransactions]);
 
   useEffect(() => {
     if (wrapEtherSelected && account) {
@@ -98,7 +99,7 @@ const MainContent = () => {
 
   return (
     <>
-      <Header isPending={isPending} />
+      <Header isPending={isPending} transactions={sessionTransactions} />
       <div className={classes.mainContent}>
         <div className={classes.mainWrapper}>
           <Typography className={classes.title}>{text.title}</Typography>
@@ -184,6 +185,8 @@ const MainContent = () => {
             isPending={isPending}
             setIsPending={setIsPending}
             setInputAmount={setInputAmount}
+            setSessionTransactions={setSessionTransactions}
+            sessionTransactions={sessionTransactions}
           />
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
+import AccountModal from "../AccountModal/AccountModal";
 import WalletModal from "../WalletModal/WalletModal";
 import ParadigmFull from "../../assets/paradigm_full.png";
 import useStyles from "./styles";
@@ -9,26 +10,35 @@ import useStyles from "./styles";
 const compressAddress = address =>
   `${address.slice(0, 6)}...${address.slice(-4)}`;
 
-const RightHeaderContent = ({ isPending }) => {
+const RightHeaderContent = ({ isPending, transactions }) => {
   const context = useWeb3React();
   const classes = useStyles();
 
-  const [open, setOpen] = useState(false);
+  const [openWalletModal, setOpenWalletModal] = useState(false);
+  const [openAccountModal, setOpenAccountModal] = useState(false);
 
   const { account, chainId, active } = context;
 
   useEffect(() => {
     if (account) {
-      setOpen(false);
+      setOpenWalletModal(false);
     }
   }, [account]);
 
-  const openWalletModal = () => {
-    setOpen(true);
+  const openWalletModalTrigger = () => {
+    setOpenWalletModal(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseWalletModal = () => {
+    setOpenWalletModal(false);
+  };
+
+  const openAccountModalTrigger = () => {
+    setOpenAccountModal(true);
+  };
+
+  const handleCloseAccountModal = () => {
+    setOpenAccountModal(false);
   };
 
   return (
@@ -36,7 +46,7 @@ const RightHeaderContent = ({ isPending }) => {
       {!active && (
         <ButtonBase
           className={classes.connectButton}
-          onClick={() => openWalletModal()}
+          onClick={() => openWalletModalTrigger()}
           disableRipple
         >
           <Typography className={classes.buttonText}>Connect Wallet</Typography>
@@ -48,7 +58,11 @@ const RightHeaderContent = ({ isPending }) => {
         </ButtonBase>
       )}
       {account && chainId === 1 && (
-        <ButtonBase className={classes.addressButton} disableRipple>
+        <ButtonBase
+          className={classes.addressButton}
+          disableRipple
+          onClick={() => openAccountModalTrigger()}
+        >
           <div className={classes.bulletPointWrapper}>
             {isPending ? (
               <CircularProgress
@@ -64,12 +78,21 @@ const RightHeaderContent = ({ isPending }) => {
           </Typography>
         </ButtonBase>
       )}
-      <WalletModal open={open} handleClose={handleClose} />
+      <WalletModal
+        open={openWalletModal}
+        handleClose={handleCloseWalletModal}
+      />
+      <AccountModal
+        transactions={[]}
+        open={openAccountModal}
+        handleClose={handleCloseAccountModal}
+        transactions={transactions}
+      />
     </div>
   );
 };
 
-const Header = ({ isPending }) => {
+const Header = ({ isPending, transactions }) => {
   const classes = useStyles();
 
   return (
@@ -82,7 +105,7 @@ const Header = ({ isPending }) => {
         />
         <Typography className={classes.convertText}>Convert</Typography>
       </div>
-      <RightHeaderContent isPending={isPending} />
+      <RightHeaderContent isPending={isPending} transactions={transactions} />
     </div>
   );
 };
