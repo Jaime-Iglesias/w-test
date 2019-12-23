@@ -74,11 +74,11 @@ const useStyles = makeStyles({
     marginLeft: 5
   },
   addressButtonText: {
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 14,
     fontWeight: 500,
     color: "#bfbfbf",
-    marginRight: 7
+    marginRight: 15
   },
   circularProgress: {
     marginLeft: 5,
