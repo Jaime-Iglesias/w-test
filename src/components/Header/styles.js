@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     marginTop: 2,
     fontWeight: 300,
     opacity: 0.25,
-    fontFamily: "NeueHaasUnicaW1G"
+    fontFamily: "neue-haas-unica"
   },
   rightContentContainer: {
     marginRight: 27
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
   addressButtonText: {
     fontFamily: "DINPro-Regular",
     fontSize: 14,
-    fontWeight: 500,
+    fontWeight: "bold",
     color: "#bfbfbf",
     marginRight: 15
   },

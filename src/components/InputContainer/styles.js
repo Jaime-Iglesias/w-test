@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     height: 64,
     fontSize: 30,
     color: "#4a4a4a",
-    fontFamily: "DINPro-Regular"
+    fontFamily: "DINPro-Regular",
+    fontWeight: "bold"
   },
   inputContentRight: {
     height: "100%",

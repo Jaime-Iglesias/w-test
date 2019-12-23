@@ -83,7 +83,6 @@ const RightHeaderContent = ({ isPending, transactions }) => {
         handleClose={handleCloseWalletModal}
       />
       <AccountModal
-        transactions={[]}
         open={openAccountModal}
         handleClose={handleCloseAccountModal}
         transactions={transactions}

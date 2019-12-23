@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   balanceText: {
     fontFamily: "DINPro-Regular",
     fontSize: 18,
-    fontWeight: 500,
+    fontWeight: "bold",
     color: "#4a4a4a"
   }
 });
