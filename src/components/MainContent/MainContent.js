@@ -35,13 +35,13 @@ const MainContent = () => {
   const [sessionTransactions, setSessionTransactions] = useState([]);
 
   const setWrapEther = () => {
-    if (!wrapEtherSelected && account && chainId === 1) {
+    if (!wrapEtherSelected) {
       setWrapEtherSelected(true);
     }
   };
 
   const setUnwrapEther = () => {
-    if (wrapEtherSelected && account && chainId === 1) {
+    if (wrapEtherSelected) {
       setWrapEtherSelected(false);
     }
   };
@@ -127,9 +127,13 @@ const MainContent = () => {
                 wrapEtherSelected
                   ? classes.optionSelected
                   : classes.optionTextDeselected,
-                !account || chainId !== 1
-                  ? classes.ethOptionDisabled
-                  : classes.hoverEffect
+                (!account || chainId !== 1) && wrapEtherSelected
+                  ? classes.selectedOptionDisabled
+                  : classes.deselectedOptionDisabled,
+                classes.hoverEffect,
+                account && chainId === 1 && wrapEtherSelected
+                  ? classes.whiteText
+                  : ""
               ].join(" ")}
               onClick={() => setWrapEther()}
               disableRipple
@@ -151,9 +155,13 @@ const MainContent = () => {
                 !wrapEtherSelected
                   ? classes.optionSelected
                   : classes.optionTextDeselected,
-                !account || chainId !== 1
-                  ? classes.wethOptionDisabled
-                  : classes.hoverEffect
+                (!account || chainId !== 1) && !wrapEtherSelected
+                  ? classes.selectedOptionDisabled
+                  : classes.deselectedOptionDisabled,
+                classes.hoverEffect,
+                account && chainId === 1 && !wrapEtherSelected
+                  ? classes.whiteText
+                  : ""
               ].join(" ")}
               onClick={() => setUnwrapEther()}
               disableRipple

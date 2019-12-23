@@ -70,6 +70,13 @@ const useStyles = makeStyles({
     borderRadius: 2,
     cursor: "default"
   },
+  disabledWeth: {
+    width: 82,
+    height: 30,
+    backgroundColor: "#d1d1d1",
+    borderRadius: 2,
+    cursor: "default"
+  },
   selectionText: {
     fontFamily: "DINPro Regular",
     fontSize: 22,

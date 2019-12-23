@@ -76,12 +76,19 @@ const useStyles = makeStyles({
   optionTextDeselected: {
     color: "#4a4a4a"
   },
-  ethOptionDisabled: {
-    backgroundColor: "#d1d1d1",
-    cursor: "default"
+  selectedOptionDisabled: {
+    backgroundColor: "#d1d1d1"
   },
-  wethOptionDisabled: {
-    cursor: "default"
+  deselectedOptionDisabled: {
+    backgroundColor: "ffffff",
+    "& > p": {
+      color: "#4a4a4a"
+    }
+  },
+  whiteText: {
+    "& > p": {
+      color: "#ffffff"
+    }
   },
   hoverEffect: {
     "&:hover": {

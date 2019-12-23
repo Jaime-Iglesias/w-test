@@ -14,7 +14,13 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     alignItems: "center",
     height: 381,
-    width: 461
+    width: 461,
+    "& > div > button:nth-of-type(odd)": {
+      marginRight: 7
+    },
+    "& > div > button:nth-of-type(even)": {
+      marginLeft: 7
+    }
   },
   optionContainer: {
     display: "flex",

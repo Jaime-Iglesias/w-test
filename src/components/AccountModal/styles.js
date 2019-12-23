@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     marginTop: 5,
     marginLeft: 25,
     fontFamily: "Rubik",
-    fontSize: 12,
+    fontSize: 13,
     color: "#0bd080"
   },
   dividerContainer: {

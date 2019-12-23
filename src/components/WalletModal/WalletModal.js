@@ -38,12 +38,7 @@ const WalletModal = ({ open, handleClose }) => {
     <Dialog open={open} onClose={handleClose}>
       <div className={classes.wrapper}>
         <Typography className={classes.title}>Connect Your Wallet</Typography>
-        <Grid
-          container
-          flex="row"
-          justify="space-evenly"
-          alignItems="flex-start"
-        >
+        <Grid container flex="row" justify="center" alignItems="flex-start">
           {setWallets(classes, activate, walletByName).map(obj => (
             <WalletOptionContainer
               icon={obj.icon}

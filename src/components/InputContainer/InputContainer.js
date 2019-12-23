@@ -11,7 +11,6 @@ const InputContainer = ({
   setMax
 }) => {
   const classes = useStyles();
-  // fuzzy find
 
   return (
     <div className={classes.containerBase}>
@@ -51,7 +50,10 @@ const InputContainer = ({
           </div>
         ) : (
           <div className={classes.selectionTypeContainer}>
-            <ButtonBase className={classes.weth} disableRipple>
+            <ButtonBase
+              className={disabled ? classes.disabledWeth : classes.weth}
+              disableRipple
+            >
               <Typography className={classes.selectionText}>WETH</Typography>
             </ButtonBase>
           </div>
