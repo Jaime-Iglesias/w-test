@@ -49,25 +49,33 @@ const MainContent = () => {
   const getEthBalance = async () => {
     const balance = await library.eth.getBalance(account);
     const eth = library.utils.fromWei(balance, "ether");
-    const ethFixed = parseFloat(eth)
-      .toFixed(4)
-      .toString();
+    const ethFixed =
+      parseFloat(eth) === 0
+        ? "0"
+        : parseFloat(eth)
+            .toFixed(4)
+            .toString();
     setEthBalance(ethFixed);
   };
 
   const getWethBalance = async () => {
     const balance = await wethContract.methods.balanceOf(account).call();
     const weth = library.utils.fromWei(balance, "ether");
-    const wethFixed = parseFloat(weth)
-      .toFixed(4)
-      .toString();
+    const wethFixed =
+      parseFloat(weth) === 0
+        ? "0"
+        : parseFloat(weth)
+            .toFixed(4)
+            .toString();
     setWethBalance(wethFixed);
   };
 
   const setMax = () => {
-    wrapEtherSelected
-      ? setInputAmount(ethBalance)
-      : setInputAmount(wethBalance);
+    if (wrapEtherSelected && ethBalance !== "0") {
+      setInputAmount(ethBalance);
+    } else if (!wrapEtherSelected && wethBalance !== "0") {
+      setInputAmount(wethBalance);
+    }
   };
 
   const handleInputChange = e => {
@@ -80,6 +88,10 @@ const MainContent = () => {
       getWethBalance();
     }
   }, [account, chainId, library, isPending, sessionTransactions]);
+
+  useEffect(() => {
+    setInputAmount("");
+  }, [account]);
 
   useEffect(() => {
     if (wrapEtherSelected && account) {
