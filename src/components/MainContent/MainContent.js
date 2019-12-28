@@ -94,20 +94,22 @@ const MainContent = () => {
   }, [account]);
 
   useEffect(() => {
-    if (wrapEtherSelected && account) {
+    if (wrapEtherSelected && account && chainId === 1) {
       if (inputAmount > ethBalance) {
         setSubmitButtonStatus("lessEth");
       } else {
         setSubmitButtonStatus("wrap");
       }
-    } else if (!wrapEtherSelected && account) {
+    } else if (!wrapEtherSelected && account && chainId === 1) {
       if (inputAmount > wethBalance) {
         setSubmitButtonStatus("lessWeth");
       } else {
         setSubmitButtonStatus("unwrap");
       }
+    } else {
+      setSubmitButtonStatus("disabled");
     }
-  }, [wrapEtherSelected, inputAmount, ethBalance]);
+  }, [wrapEtherSelected, inputAmount, ethBalance, chainId]);
 
   return (
     <>
