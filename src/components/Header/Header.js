@@ -76,7 +76,7 @@ const RightHeaderContent = ({ isPending, transactions }) => {
                 className={classes.circularProgress}
               />
             ) : (
-              <span className={classes.bulletPoint}>⚫</span>
+              <span className={classes.bulletPoint}>•</span>
             )}
           </div>
           <Typography className={classes.addressButtonText}>

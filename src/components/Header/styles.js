@@ -74,13 +74,14 @@ const useStyles = makeStyles({
   },
   bulletPointWrapper: {
     flexGrow: 1,
+    marginTop: 1,
     display: "flex",
     justifyContent: "flex-start"
   },
   bulletPoint: {
     color: "#0bd080",
-    fontSize: 16,
-    marginLeft: 5
+    fontSize: 20,
+    marginLeft: 7
   },
   addressButtonText: {
     fontFamily: "DINPro-Regular",
