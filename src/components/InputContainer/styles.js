@@ -53,41 +53,41 @@ const useStyles = makeStyles({
   },
   eth: {
     width: 60,
-    height: 30,
+    // height: 30,
     backgroundColor: "#2188ea",
     borderRadius: 2,
     cursor: "default"
   },
   disabledEth: {
     width: 60,
-    height: 30,
+    // height: 30,
     backgroundColor: "#d1d1d1",
     borderRadius: 2,
     cursor: "default"
   },
   weth: {
     width: 82,
-    height: 30,
+    // height: 30,
     backgroundColor: "#ed1e79",
     borderRadius: 2,
     cursor: "default"
   },
   disabledWeth: {
     width: 82,
-    height: 30,
+    // height: 30,
     backgroundColor: "#d1d1d1",
     borderRadius: 2,
     cursor: "default"
   },
   selectionText: {
-    fontFamily: "DINPro-Regular",
+    fontFamily: "DINPro-Medium",
     fontSize: 22,
     letterSpacing: 1.4,
     color: "#ffffff",
-    fontWeight: "bold"
+    // fontWeight: "bold"
   },
   selectionTypeContainer: {
-    paddingTop: 21,
+    paddingTop: 15,
     paddingRight: 18
   }
 });

@@ -10,14 +10,14 @@ const useStyles = makeStyles({
   },
   eth: {
     width: 60,
-    height: 30,
+    // height: 30,
     backgroundColor: "#2188ea",
     borderRadius: 2,
     cursor: "default"
   },
   weth: {
     width: 82,
-    height: 30,
+    // height: 30,
     backgroundColor: "#ed1e79",
     borderRadius: 2,
     cursor: "default"
@@ -26,11 +26,11 @@ const useStyles = makeStyles({
     backgroundColor: "#d1d1d1"
   },
   innerText: {
-    fontFamily: "DINPro-Regular",
+    fontFamily: "DINPro-Medium",
     fontSize: 22,
     letterSpacing: 1.4,
     color: "#ffffff",
-    fontWeight: "bold"
+    // fontWeight: "bold"
   },
   balanceText: {
     fontFamily: "DINPro-Regular",

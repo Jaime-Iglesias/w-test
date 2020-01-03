@@ -20,20 +20,20 @@ const useStyles = makeStyles({
     height: 31,
     marginRight: 8,
     marginLeft: "3%",
-    opacity: 0.47
+    opacity: 0.3
   },
   paradigmLogoSmall: {
     marginLeft: "5%",
     height: 26,
     width: 26,
-    opacity: 0.47
+    opacity: 0.3
   },
   convertText: {
     fontSize: 20,
     marginTop: 2,
     fontWeight: 300,
     opacity: 0.25,
-    fontFamily: "neue-haas-unica"
+    fontFamily: "Rubik"
   },
   rightContentContainer: {
     marginRight: "2.5%"
@@ -80,8 +80,11 @@ const useStyles = makeStyles({
   },
   bulletPoint: {
     color: "#0bd080",
-    fontSize: 20,
-    marginLeft: 7
+    fontSize: 60,
+    marginLeft: 5,
+    lineHeight: 0,
+    marginTop: -6,
+    marginRight: 4,
   },
   addressButtonText: {
     fontFamily: "DINPro-Regular",
