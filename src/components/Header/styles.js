@@ -80,11 +80,11 @@ const useStyles = makeStyles({
   },
   bulletPoint: {
     color: "#0bd080",
-    fontSize: 60,
+    fontSize: 22,
+    font: "Rubik",
     marginLeft: 5,
     lineHeight: 0,
-    marginTop: -6,
-    marginRight: 4,
+    marginRight: 4
   },
   addressButtonText: {
     fontFamily: "DINPro-Regular",

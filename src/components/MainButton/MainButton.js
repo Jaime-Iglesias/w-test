@@ -7,7 +7,6 @@ import useStyles from "./styles";
 const setButtonType = (
   submitButtonStatus,
   classes,
-  inputAmount,
   isPending,
   wrapEther,
   unwrapEther
@@ -16,12 +15,6 @@ const setButtonType = (
     case "wrap":
       return (
         <>
-          <Typography className={classes.baseDescTop}>
-            {`You will receive ${inputAmount || "0"} WETH`}
-          </Typography>
-          <Typography className={classes.baseDescBottom}>
-            *Does not include network costs (i.e. gas).
-          </Typography>
           <ButtonBase
             className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
             disableRipple
@@ -43,12 +36,6 @@ const setButtonType = (
     case "unwrap":
       return (
         <>
-          <Typography className={classes.baseDescTop}>
-            {`You will receive ${inputAmount || "0"} ETH`}
-          </Typography>
-          <Typography className={classes.baseDescBottom}>
-            *Does not include network costs (i.e. gas).
-          </Typography>
           <ButtonBase
             className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
             disableRipple
@@ -67,38 +54,6 @@ const setButtonType = (
           </ButtonBase>
         </>
       );
-    case "lessEth":
-      return (
-        <>
-          <Typography className={classes.baseDescError}>
-            Insufficient ETH Balance
-          </Typography>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.errorCase].join(" ")}
-            disableRipple
-          >
-            <Typography className={classes.mainButtonTextBase}>
-              Insufficient ETH Balance
-            </Typography>
-          </ButtonBase>
-        </>
-      );
-    case "lessWeth":
-      return (
-        <>
-          <Typography className={classes.baseDescError}>
-            Insufficient WETH Balance
-          </Typography>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.errorCase].join(" ")}
-            disableRipple
-          >
-            <Typography className={classes.mainButtonTextBase}>
-              Insufficient WETH Balance
-            </Typography>
-          </ButtonBase>
-        </>
-      );
     case "disabled":
       return (
         <ButtonBase
@@ -113,9 +68,6 @@ const setButtonType = (
     default:
       return (
         <>
-          <Typography className={classes.baseDescTop}>
-            {`You will receive ${inputAmount || "0"} WETH`}
-          </Typography>
           <ButtonBase
             className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
             disableRipple

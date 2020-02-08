@@ -14,12 +14,12 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 43,
-    maxWidth: 556,
+    maxWidth: 620,
     width: "89%"
   },
   title: {
     fontFamily: "Rubik",
-    opacity: 0.75,
+    opacity: "0.75",
     fontSize: 32
   },
   subtitle: {
@@ -41,6 +41,7 @@ const useStyles = makeStyles({
   },
   instructions: {
     marginTop: 33,
+    marginBottom: 62,
     fontFamily: "Rubik",
     fontSize: 14,
     opacity: 0.25,
