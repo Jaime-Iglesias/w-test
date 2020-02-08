@@ -9,13 +9,13 @@ const useStyles = makeStyles({
     alignItems: "flex-start"
   },
   label: {
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 16,
     fontWeight: 300,
     marginBottom: 11
   },
   balanceText: {
-    fontFamily: "DINPro",
+    fontFamily: "DINPro-Regular",
     fontSize: 14,
     fontWeight: 300,
     opacity: 0.3

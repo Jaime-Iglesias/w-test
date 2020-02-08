@@ -53,7 +53,7 @@ const InputArea = ({
           </div>
         </div>
         <div style={{ marginTop: 9 }}>
-          <MainButton />
+          <MainButton submitButtonStatus={disabled} />
         </div>
       </div>
     </div>
