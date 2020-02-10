@@ -100,6 +100,8 @@ const MainContent = () => {
               tokenName={text.eth}
               setMax={setMax}
               inputAmount={ethInputAmount}
+              setEthInputAmount={setEthInputAmount}
+              setWethInputAmount={setWethInputAmount}
               handleInputChange={handleEthChange}
               disabled={!account || chainId !== 1}
               setSessionTransactions={setSessionTransactions}
@@ -116,6 +118,8 @@ const MainContent = () => {
             tokenName={text.weth}
             setMax={setMax}
             inputAmount={wethInputAmount}
+            setEthInputAmount={setEthInputAmount}
+            setWethInputAmount={setWethInputAmount}
             handleInputChange={handleWethChange}
             disabled={!account || chainId !== 1}
             setSessionTransactions={setSessionTransactions}

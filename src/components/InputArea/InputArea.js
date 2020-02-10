@@ -15,6 +15,7 @@ const InputArea = ({
   handleInputChange,
   setEthInputAmount,
   setWethInputAmount,
+  setSessionTransactions,
   setIsPending,
   isPending,
   wethContract,
@@ -86,6 +87,7 @@ const InputArea = ({
             submitButtonStatus={disabled}
             setEthInputAmount={setEthInputAmount}
             setWethInputAmount={setWethInputAmount}
+            setSessionTransactions={setSessionTransactions}
             inputAmount={inputAmount}
             isPending={isPending}
             setIsPending={setIsPending}
