@@ -4,90 +4,18 @@ import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
 
-const setButtonType = (
-  submitButtonStatus,
-  classes,
-  isPending,
-  wrapEther,
-  unwrapEther
-) => {
-  switch (submitButtonStatus) {
-    case "wrap":
-      return (
-        <>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
-            disableRipple
-            onClick={() => wrapEther()}
-          >
-            {!isPending ? (
-              <Typography className={classes.mainButtonTextBase}>
-                Wrap
-              </Typography>
-            ) : (
-              <CircularProgress
-                size={22}
-                className={classes.circularProgress}
-              />
-            )}
-          </ButtonBase>
-        </>
-      );
-    case "unwrap":
-      return (
-        <>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
-            disableRipple
-            onClick={() => unwrapEther()}
-          >
-            {!isPending ? (
-              <Typography className={classes.mainButtonTextBase}>
-                Unwrap
-              </Typography>
-            ) : (
-              <CircularProgress
-                size={22}
-                className={classes.circularProgress}
-              />
-            )}
-          </ButtonBase>
-        </>
-      );
-    case "disabled":
-      return (
-        <ButtonBase
-          className={[classes.mainButtonBase, classes.wrapButtonDisabled].join(
-            " "
-          )}
-          disableRipple
-        >
-          <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
-        </ButtonBase>
-      );
-    default:
-      return (
-        <>
-          <ButtonBase
-            className={[classes.mainButtonBase, classes.wrapCase].join(" ")}
-            disableRipple
-          >
-            <Typography className={classes.mainButtonTextBase}>Wrap</Typography>
-          </ButtonBase>
-        </>
-      );
-  }
-};
-
 const MainButton = ({
-  submitButtonStatus,
+  isEth,
+  disabled,
   inputAmount,
   wethContract,
   wethAddress,
-  isPending,
   setIsPending,
-  setInputAmount,
-  setSessionTransactions
+  isPending,
+  setWethInputAmount,
+  setEthInputAmount,
+  setSessionTransactions,
+  invalidInput
 }) => {
   const classes = useStyles();
   const context = useWeb3React();
@@ -103,7 +31,8 @@ const MainButton = ({
         })
         .on("transactionHash", txHash => {
           setIsPending(true);
-          setInputAmount("");
+          setEthInputAmount("");
+          setWethInputAmount("");
           let d = new Date();
           let timestamp = d.toLocaleString();
           const transaction = {
@@ -128,7 +57,8 @@ const MainButton = ({
         .send({ from: account })
         .on("transactionHash", txHash => {
           setIsPending(true);
-          setInputAmount("");
+          setEthInputAmount("");
+          setWethInputAmount("");
           let d = new Date();
           let timestamp = d.toLocaleString();
           const transaction = {
@@ -146,16 +76,35 @@ const MainButton = ({
     }
   };
 
+  const sendTransaction = () => {
+    if (isEth && !invalidInput) {
+      wrapEther();
+    } else if (!isEth && !invalidInput) {
+      unwrapEther();
+    }
+    console.log(invalidInput);
+  };
+
   return (
     <>
-      {setButtonType(
-        submitButtonStatus,
-        classes,
-        inputAmount,
-        isPending,
-        wrapEther,
-        unwrapEther
-      )}
+      <ButtonBase
+        className={[
+          classes.mainButtonBase,
+          disabled ? classes.disabled : classes.enabled
+        ].join(" ")}
+        disableRipple
+        onClick={() => sendTransaction()}
+      >
+        <Typography className={classes.mainButtonTextBase}>
+          {!isPending ? (
+            <Typography className={classes.mainButtonTextBase}>
+              {isEth ? "Wrap" : "Unwrap"}
+            </Typography>
+          ) : (
+            <CircularProgress size={22} className={classes.circularProgress} />
+          )}
+        </Typography>
+      </ButtonBase>
     </>
   );
 };

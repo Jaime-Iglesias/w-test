@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Typography, Divider, ButtonBase } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
@@ -26,7 +26,8 @@ const MainContent = () => {
 
   const [ethBalance, setEthBalance] = useState("-");
   const [wethBalance, setWethBalance] = useState("-");
-  const [inputAmount, setInputAmount] = useState("");
+  const [ethInputAmount, setEthInputAmount] = useState("");
+  const [wethInputAmount, setWethInputAmount] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [sessionTransactions, setSessionTransactions] = useState([]);
 
@@ -54,16 +55,20 @@ const MainContent = () => {
     setWethBalance(wethFixed);
   };
 
-  const setMax = isEth => {
-    if (isEth && ethBalance !== "0") {
-      setInputAmount(ethBalance);
-    } else if (!isEth && wethBalance !== "0") {
-      setInputAmount(wethBalance);
-    }
+  const handleEthChange = e => {
+    setEthInputAmount(e.target.value);
   };
 
-  const handleInputChange = e => {
-    setInputAmount(e.target.value);
+  const handleWethChange = e => {
+    setWethInputAmount(e.target.value);
+  };
+
+  const setMax = isEth => {
+    if (isEth && ethBalance !== "0") {
+      setEthInputAmount(ethBalance);
+    } else if (!isEth && wethBalance !== "0") {
+      setWethInputAmount(wethBalance);
+    }
   };
 
   useEffect(() => {
@@ -74,7 +79,8 @@ const MainContent = () => {
   }, [account, chainId, library, isPending, sessionTransactions]);
 
   useEffect(() => {
-    setInputAmount("");
+    setWethInputAmount("");
+    setEthInputAmount("");
   }, [account]);
 
   return (
@@ -90,21 +96,29 @@ const MainContent = () => {
             <InputArea
               label={text.wrap}
               balance={ethBalance}
+              isEth={true}
               tokenName={text.eth}
-              disabled={!account || chainId !== 1}
-              inputAmount={inputAmount}
-              handleInputChange={handleInputChange}
               setMax={setMax}
+              inputAmount={ethInputAmount}
+              handleInputChange={handleEthChange}
+              disabled={!account || chainId !== 1}
+              setSessionTransactions={setSessionTransactions}
+              setIsPending={setIsPending}
+              isPending={isPending}
             />
           </div>
           <InputArea
             label={text.unwrap}
             balance={wethBalance}
+            isEth={false}
             tokenName={text.weth}
-            disabled={!account || chainId !== 1}
-            inputAmount={inputAmount}
-            handleInputChange={handleInputChange}
             setMax={setMax}
+            inputAmount={wethInputAmount}
+            handleInputChange={handleWethChange}
+            disabled={!account || chainId !== 1}
+            setSessionTransactions={setSessionTransactions}
+            setIsPending={setIsPending}
+            isPending={isPending}
           />
         </div>
       </div>

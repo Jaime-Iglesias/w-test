@@ -14,17 +14,12 @@ const useStyles = makeStyles({
     fontWeight: 300,
     color: "#ffffff"
   },
-  wrapButtonDisabled: {
-    backgroundColor: "#d1d1d1"
+  disabled: {
+    backgroundColor: "#bfbfbf",
+    cursor: "default"
   },
-  wrapCase: {
-    backgroundColor: "#0bd080",
-    "&:hover": {
-      border: "1px solid #dddddd"
-    }
-  },
-  errorCase: {
-    backgroundColor: "#fd4848",
+  enabled: {
+    backgroundColor: "#5c5c5c",
     "&:hover": {
       border: "1px solid #dddddd"
     }

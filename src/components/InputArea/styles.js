@@ -20,6 +20,10 @@ const useStyles = makeStyles({
     fontWeight: 300,
     opacity: 0.3
   },
+  balanceTextInvalidInput: {
+    color: "#fd4848",
+    opacity: 1
+  },
   textfieldAndButtonContainer: {
     width: "100%",
     display: "flex",
@@ -40,6 +44,9 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "flex-start"
   },
+  inputFieldInvalidInput: {
+    border: "solid 1px #fd4848"
+  },
   inputField: {
     paddingLeft: 30,
     height: 64,
@@ -47,6 +54,9 @@ const useStyles = makeStyles({
     color: "#4a4a4a",
     fontFamily: "DINPro-Regular",
     fontWeight: "bold"
+  },
+  inputFieldTextInvalidInput: {
+    color: "#fd4848"
   },
   rightContentSepartor: {
     flexGrow: 1
