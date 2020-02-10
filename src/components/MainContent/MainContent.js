@@ -105,6 +105,8 @@ const MainContent = () => {
               setSessionTransactions={setSessionTransactions}
               setIsPending={setIsPending}
               isPending={isPending}
+              wethContract={wethContract}
+              wethAddress={wethAddress}
             />
           </div>
           <InputArea
@@ -119,6 +121,8 @@ const MainContent = () => {
             setSessionTransactions={setSessionTransactions}
             setIsPending={setIsPending}
             isPending={isPending}
+            wethContract={wethContract}
+            wethAddress={wethAddress}
           />
         </div>
       </div>

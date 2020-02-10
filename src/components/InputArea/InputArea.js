@@ -16,7 +16,9 @@ const InputArea = ({
   setEthInputAmount,
   setWethInputAmount,
   setIsPending,
-  isPending
+  isPending,
+  wethContract,
+  wethAddress
 }) => {
   const [invalidInput, setInvalidInput] = useState(false);
   const classes = useStyles();
@@ -24,11 +26,7 @@ const InputArea = ({
   useEffect(() => {
     if (disabled) return;
 
-    if (
-      inputAmount > balance ||
-      inputAmount < 0 ||
-      Number(inputAmount) === NaN
-    ) {
+    if (inputAmount > balance || inputAmount < 0 || isNaN(inputAmount)) {
       setInvalidInput(true);
     } else {
       setInvalidInput(false);
@@ -88,11 +86,14 @@ const InputArea = ({
             submitButtonStatus={disabled}
             setEthInputAmount={setEthInputAmount}
             setWethInputAmount={setWethInputAmount}
+            inputAmount={inputAmount}
             isPending={isPending}
             setIsPending={setIsPending}
             isEth={isEth}
             disabled={disabled || invalidInput}
             invalidInput={invalidInput}
+            wethContract={wethContract}
+            wethAddress={wethAddress}
           />
         </div>
       </div>
