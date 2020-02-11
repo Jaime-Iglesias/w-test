@@ -8,7 +8,7 @@ import text from "./mainContentText";
 import InputArea from "../InputArea/InputArea";
 import Header from "../Header/Header";
 
-const MainContent = () => {
+const MainContent = ({ darkMode, setDarkMode }) => {
   const context = useWeb3React();
   const { account, library, chainId } = context;
 
@@ -85,11 +85,24 @@ const MainContent = () => {
 
   return (
     <>
-      <Header isPending={isPending} transactions={sessionTransactions} />
+      <Header
+        isPending={isPending}
+        transactions={sessionTransactions}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+      />
       <div className={classes.mainContent}>
         <div className={classes.mainWrapper}>
-          <Typography className={classes.title}>{text.title}</Typography>
-          <Typography className={classes.instructions}>
+          <Typography
+            className={darkMode ? classes.darkModeTitle : classes.title}
+          >
+            {text.title}
+          </Typography>
+          <Typography
+            className={
+              darkMode ? classes.darkModeInstructions : classes.instructions
+            }
+          >
             {text.instructions}
           </Typography>
           <div style={{ marginBottom: 55, width: "100%" }}>
@@ -109,6 +122,7 @@ const MainContent = () => {
               isPending={isPending}
               wethContract={wethContract}
               wethAddress={wethAddress}
+              darkMode={darkMode}
             />
           </div>
           <InputArea
@@ -127,6 +141,7 @@ const MainContent = () => {
             isPending={isPending}
             wethContract={wethContract}
             wethAddress={wethAddress}
+            darkMode={darkMode}
           />
         </div>
       </div>

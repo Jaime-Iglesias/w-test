@@ -19,7 +19,8 @@ const InputArea = ({
   setIsPending,
   isPending,
   wethContract,
-  wethAddress
+  wethAddress,
+  darkMode
 }) => {
   const [invalidInput, setInvalidInput] = useState(false);
   const classes = useStyles();
@@ -36,10 +37,12 @@ const InputArea = ({
 
   return (
     <div className={classes.inputAreaContainer}>
-      <Typography className={classes.label}>{label}</Typography>
+      <Typography className={darkMode ? classes.darkModeLabel : classes.label}>
+        {label}
+      </Typography>
       <Typography
         className={[
-          classes.balanceText,
+          darkMode ? classes.darkModeBalanceText : classes.balanceText,
           invalidInput ? classes.balanceTextInvalidInput : ""
         ].join(" ")}
       >{`${tokenName} Balance: ${balance}`}</Typography>
@@ -47,14 +50,16 @@ const InputArea = ({
         <div className={classes.inputFieldSepartor}>
           <div
             className={[
-              classes.inputFieldContainerBase,
+              darkMode
+                ? classes.darkModeInputFieldContainerBase
+                : classes.inputFieldContainerBase,
               invalidInput ? classes.inputFieldInvalidInput : ""
             ].join(" ")}
           >
             <div className={classes.rightContentSepartor}>
               <InputBase
                 className={[
-                  classes.inputField,
+                  darkMode ? classes.darkModeInputField : classes.inputField,
                   invalidInput ? classes.inputFieldTextInvalidInput : ""
                 ].join(" ")}
                 disabled={disabled}
@@ -76,7 +81,15 @@ const InputArea = ({
                   disabled={disabled}
                   onClick={() => setMax(isEth)}
                 >
-                  <Typography className={classes.maxButtonText}>Max</Typography>
+                  <Typography
+                    className={
+                      darkMode
+                        ? classes.darkModeMaxButtonText
+                        : classes.maxButtonText
+                    }
+                  >
+                    Max
+                  </Typography>
                 </ButtonBase>
               </div>
             </div>
@@ -96,6 +109,7 @@ const InputArea = ({
             invalidInput={invalidInput}
             wethContract={wethContract}
             wethAddress={wethAddress}
+            darkMode={darkMode}
           />
         </div>
       </div>

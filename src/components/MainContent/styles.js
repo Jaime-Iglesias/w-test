@@ -22,6 +22,11 @@ const useStyles = makeStyles({
     opacity: "0.75",
     fontSize: 32
   },
+  darkModeTitle: {
+    fontFamily: "Rubik",
+    fontSize: 32,
+    color: "#ffffff"
+  },
   subtitle: {
     marginTop: 35,
     fontFamily: "Rubik",
@@ -47,6 +52,15 @@ const useStyles = makeStyles({
     opacity: 0.25,
     fontWeight: 300,
     textAlign: "center"
+  },
+  darkModeInstructions: {
+    marginTop: 33,
+    marginBottom: 62,
+    fontFamily: "Rubik",
+    fontSize: 14,
+    opacity: 0.51,
+    textAlign: "center",
+    color: "#ffffff"
   },
   optionsContainer: {
     marginTop: 33,

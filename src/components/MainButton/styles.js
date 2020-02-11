@@ -14,6 +14,12 @@ const useStyles = makeStyles({
     fontWeight: 300,
     color: "#ffffff"
   },
+  darkModeMainButtonTextBase: {
+    fontFamily: "Rubik",
+    fontSize: 14,
+    fontWeight: 300,
+    color: "#4a4a4a"
+  },
   pendingButtonTextBase: {
     marginTop: 4
   },
@@ -21,10 +27,16 @@ const useStyles = makeStyles({
     backgroundColor: "#bfbfbf",
     cursor: "default"
   },
-  enabled: {
+  buttonBase: {
     backgroundColor: "#5c5c5c",
     "&:hover": {
       border: "1px solid #dddddd"
+    }
+  },
+  darkModeButtonBase: {
+    backgroundColor: "#bfbfbf",
+    "&:hover": {
+      border: "1px solid #5c5c5c"
     }
   },
   circularProgress: {

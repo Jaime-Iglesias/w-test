@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {
-  Typography,
-  ButtonBase,
-  CircularProgress,
-  useMediaQuery
-} from "@material-ui/core";
+import Switch from "react-switch";
+import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import AccountModal from "../AccountModal/AccountModal";
 import WalletModal from "../WalletModal/WalletModal";
-import ParadigmFull from "../../assets/paradigm_full.png";
-import ParadigmP from "../../assets/paradigm_small.png";
 import useStyles from "./styles";
 
 const compressAddress = address =>
   `${address.slice(0, 6)}...${address.slice(-4)}`;
 
-const RightHeaderContent = ({ isPending, transactions }) => {
+const RightHeaderContent = ({ isPending, transactions, darkMode }) => {
   const context = useWeb3React();
   const classes = useStyles();
 
@@ -65,7 +59,9 @@ const RightHeaderContent = ({ isPending, transactions }) => {
       )}
       {account && chainId === 1 && (
         <ButtonBase
-          className={classes.addressButton}
+          className={
+            darkMode ? classes.darkAddressButton : classes.addressButton
+          }
           disableRipple
           onClick={() => openAccountModalTrigger()}
         >
@@ -97,32 +93,58 @@ const RightHeaderContent = ({ isPending, transactions }) => {
   );
 };
 
-const Header = ({ isPending, transactions }) => {
+const Header = ({ isPending, transactions, setDarkMode, darkMode }) => {
   const classes = useStyles();
 
-  const logoType = useMediaQuery("(min-width:780px)");
+  const handleToggle = () => {
+    setDarkMode(mode => !mode);
+  };
 
   return (
     <div className={classes.headerContainer}>
       <div className={classes.leftContent}>
-        {logoType ? (
-          <>
-            <img
-              src={ParadigmFull}
-              alt="paradigm-main"
-              className={classes.paradigmLogoPrimary}
-            />
-            <Typography className={classes.convertText}>Convert</Typography>
-          </>
-        ) : (
-          <img
-            src={ParadigmP}
-            alt="paradigm-small"
-            className={classes.paradigmLogoSmall}
+        <div className={classes.switchContainer}>
+          <Switch
+            onColor="#d1d1d1"
+            offColor="#d1d1d1"
+            checked={darkMode}
+            onChange={() => handleToggle()}
+            uncheckedIcon={
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <span role="img" aria-label="moon">
+                  🌕
+                </span>
+              </div>
+            }
+            checkedIcon={
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <span role="img" aria-label="moon">
+                  ☀️
+                </span>
+              </div>
+            }
           />
-        )}
+        </div>
       </div>
-      <RightHeaderContent isPending={isPending} transactions={transactions} />
+      <RightHeaderContent
+        isPending={isPending}
+        transactions={transactions}
+        darkMode={darkMode}
+      />
     </div>
   );
 };

@@ -15,25 +15,8 @@ const useStyles = makeStyles({
     alignContent: "flex-start",
     flexGrow: 1
   },
-  paradigmLogoPrimary: {
-    width: 142,
-    height: 31,
-    marginRight: 8,
-    marginLeft: "3%",
-    opacity: 0.3
-  },
-  paradigmLogoSmall: {
-    marginLeft: "5%",
-    height: 26,
-    width: 26,
-    opacity: 0.3
-  },
-  convertText: {
-    fontSize: 20,
-    marginTop: 2,
-    fontWeight: 300,
-    opacity: 0.25,
-    fontFamily: "Rubik"
+  switchContainer: {
+    marginLeft: "3%"
   },
   rightContentContainer: {
     marginRight: "2.5%"
@@ -70,6 +53,20 @@ const useStyles = makeStyles({
     alignItems: "center",
     "&:hover": {
       backgroundColor: "#f8f8f8"
+    }
+  },
+  darkAddressButton: {
+    width: 132,
+    height: 33,
+    border: "solid 1px #d1d1d1",
+    backgroundColor: "#2d2d2d",
+    borderRadius: 2,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#595959"
     }
   },
   bulletPointWrapper: {

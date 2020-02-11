@@ -15,7 +15,8 @@ const MainButton = ({
   setWethInputAmount,
   setEthInputAmount,
   setSessionTransactions,
-  invalidInput
+  invalidInput,
+  darkMode
 }) => {
   const classes = useStyles();
   const context = useWeb3React();
@@ -90,23 +91,39 @@ const MainButton = ({
       <ButtonBase
         className={[
           classes.mainButtonBase,
-          disabled ? classes.disabled : classes.enabled
+          disabled ? classes.disabled : "",
+          darkMode ? classes.darkModeButtonBase : classes.buttonBase
         ].join(" ")}
         disableRipple
         onClick={() => sendTransaction()}
       >
         <Typography
           className={[
-            classes.mainButtonTextBase,
+            darkMode
+              ? classes.darkModeMainButtonTextBase
+              : classes.mainButtonTextBase,
             isPending ? classes.pendingButtonTextBase : ""
           ].join(" ")}
         >
           {!isPending ? (
-            <Typography className={classes.mainButtonTextBase}>
+            <Typography
+              className={
+                darkMode
+                  ? classes.darkModeMainButtonTextBase
+                  : classes.mainButtonTextBase
+              }
+            >
               {isEth ? "Wrap" : "Unwrap"}
             </Typography>
           ) : (
-            <CircularProgress size={22} className={classes.circularProgress} />
+            <CircularProgress
+              size={22}
+              className={
+                darkMode
+                  ? classes.darkModeCircularProgress
+                  : classes.circularProgress
+              }
+            />
           )}
         </Typography>
       </ButtonBase>
