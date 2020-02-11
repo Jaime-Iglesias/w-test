@@ -95,7 +95,12 @@ const MainButton = ({
         disableRipple
         onClick={() => sendTransaction()}
       >
-        <Typography className={classes.mainButtonTextBase}>
+        <Typography
+          className={[
+            classes.mainButtonTextBase,
+            isPending ? classes.pendingButtonTextBase : ""
+          ].join(" ")}
+        >
           {!isPending ? (
             <Typography className={classes.mainButtonTextBase}>
               {isEth ? "Wrap" : "Unwrap"}

@@ -14,6 +14,9 @@ const useStyles = makeStyles({
     fontWeight: 300,
     color: "#ffffff"
   },
+  pendingButtonTextBase: {
+    marginTop: 4
+  },
   disabled: {
     backgroundColor: "#bfbfbf",
     cursor: "default"
