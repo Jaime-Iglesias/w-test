@@ -6,7 +6,7 @@ import useStyles from "./styles";
 
 const compressTxHash = txHash => `${txHash.slice(0, 8)}...${txHash.slice(-6)}`;
 
-const Transaction = ({ transaction }) => {
+const Transaction = ({ transaction, darkMode }) => {
   const classes = useStyles();
 
   return (
@@ -21,7 +21,13 @@ const Transaction = ({ transaction }) => {
             )
           }
         >
-          <Typography className={classes.transactionText}>
+          <Typography
+            className={
+              darkMode
+                ? classes.darkModeTransactionText
+                : classes.transactionText
+            }
+          >
             {compressTxHash(transaction.hash)}
           </Typography>
         </ButtonBase>
@@ -33,15 +39,23 @@ const Transaction = ({ transaction }) => {
   );
 };
 
-const AccountModal = ({ transactions, open, handleClose }) => {
+const AccountModal = ({ transactions, open, handleClose, darkMode }) => {
   const classes = useStyles();
   const context = useWeb3React();
   const { account } = context;
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <div className={classes.dialogWrapper}>
-        <Typography className={classes.title}>Your Account</Typography>
+      <div
+        className={
+          darkMode ? classes.darkModeDialogWrapper : classes.dialogWrapper
+        }
+      >
+        <Typography
+          className={darkMode ? classes.darkModeTitle : classes.title}
+        >
+          Your Account
+        </Typography>
         <ButtonBase
           disableRipple
           onClick={() =>
@@ -56,7 +70,7 @@ const AccountModal = ({ transactions, open, handleClose }) => {
           <Divider className={classes.divider} />
         </div>
         {transactions.map(tx => (
-          <Transaction transaction={tx} />
+          <Transaction transaction={tx} darkMode={darkMode} />
         ))}
       </div>
     </Dialog>

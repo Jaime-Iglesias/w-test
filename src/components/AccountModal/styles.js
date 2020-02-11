@@ -9,12 +9,28 @@ const useStyles = makeStyles({
     width: 460,
     height: 249
   },
+  darkModeDialogWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    width: 460,
+    height: 249,
+    backgroundColor: "#2d2d2d"
+  },
   title: {
     marginTop: 22,
     marginLeft: 24,
     fontFamily: "Rubik",
     fontSize: 18,
     color: "#4a4a4a"
+  },
+  darkModeTitle: {
+    marginTop: 22,
+    marginLeft: 24,
+    fontFamily: "Rubik",
+    fontSize: 18,
+    color: "#ffffff"
   },
   viewEtherscan: {
     marginTop: 5,
@@ -49,6 +65,19 @@ const useStyles = makeStyles({
     fontFamily: "DINPro-Regular",
     fontSize: 12,
     color: "#4a4a4a",
+    "&:hover": {
+      color: "#0bd080",
+      "&&& > div": {
+        backgroundColor: "red",
+        color: "#838383"
+      }
+    }
+  },
+  darkModeTransactionText: {
+    marginLeft: 25,
+    fontFamily: "DINPro-Regular",
+    fontSize: 12,
+    color: "#ffffff",
     "&:hover": {
       color: "#0bd080",
       "&&& > div": {
