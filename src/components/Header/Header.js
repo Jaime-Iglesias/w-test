@@ -88,6 +88,7 @@ const RightHeaderContent = ({ isPending, transactions, darkMode }) => {
         open={openAccountModal}
         handleClose={handleCloseAccountModal}
         transactions={transactions}
+        darkMode={darkMode}
       />
     </div>
   );
