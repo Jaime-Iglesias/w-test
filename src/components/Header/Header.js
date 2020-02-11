@@ -105,8 +105,8 @@ const Header = ({ isPending, transactions, setDarkMode, darkMode }) => {
       <div className={classes.leftContent}>
         <div className={classes.switchContainer}>
           <Switch
-            onColor="#d1d1d1"
-            offColor="#d1d1d1"
+            onColor="#ededed"
+            offColor="#ededed"
             checked={darkMode}
             onChange={() => handleToggle()}
             uncheckedIcon={
