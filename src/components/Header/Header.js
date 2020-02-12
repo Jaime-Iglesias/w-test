@@ -83,6 +83,7 @@ const RightHeaderContent = ({ isPending, transactions, darkMode }) => {
       <WalletModal
         open={openWalletModal}
         handleClose={handleCloseWalletModal}
+        darkMode={darkMode}
       />
       <AccountModal
         open={openAccountModal}

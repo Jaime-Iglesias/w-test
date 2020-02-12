@@ -19,7 +19,13 @@ const walletByName = {
   LEDGER: ledger
 };
 
-const WalletOptionContainer = ({ icon, text, className, activateWallet }) => {
+const WalletOptionContainer = ({
+  icon,
+  text,
+  className,
+  activateWallet,
+  darkMode
+}) => {
   const classes = useStyles();
 
   return (
@@ -29,12 +35,16 @@ const WalletOptionContainer = ({ icon, text, className, activateWallet }) => {
       onClick={activateWallet}
     >
       <img src={icon} alt={text} className={className} />
-      <Typography className={classes.optionText}>{text}</Typography>
+      <Typography
+        className={darkMode ? classes.darkModeOptionText : classes.optionText}
+      >
+        {text}
+      </Typography>
     </ButtonBase>
   );
 };
 
-const WalletModal = ({ open, handleClose }) => {
+const WalletModal = ({ open, handleClose, darkMode }) => {
   const classes = useStyles();
   const context = useWeb3React();
 

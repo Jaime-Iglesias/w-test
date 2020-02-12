@@ -23,10 +23,6 @@ const useStyles = makeStyles({
   pendingButtonTextBase: {
     marginTop: 4
   },
-  disabled: {
-    backgroundColor: "#bfbfbf",
-    cursor: "default"
-  },
   buttonBase: {
     backgroundColor: "#5c5c5c",
     "&:hover": {
@@ -37,6 +33,13 @@ const useStyles = makeStyles({
     backgroundColor: "#bfbfbf",
     "&:hover": {
       border: "1px solid #5c5c5c"
+    }
+  },
+  disabled: {
+    backgroundColor: "#bfbfbf",
+    cursor: "default",
+    "&:hover": {
+      border: "1px solid transparent"
     }
   },
   circularProgress: {
