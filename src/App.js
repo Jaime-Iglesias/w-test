@@ -38,7 +38,7 @@ const getLibrary = provider => {
 
 const App = () => {
   const classes = useStyles();
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
