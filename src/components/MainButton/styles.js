@@ -8,6 +8,12 @@ const useStyles = makeStyles({
     maxHeight: 45,
     borderRadius: 2
   },
+  mobileMainButtonBase: {
+    width: "100%",
+    height: 45,
+    maxHeight: 45,
+    borderRadius: 2
+  },
   mainButtonTextBase: {
     fontFamily: "Rubik",
     fontSize: 14,

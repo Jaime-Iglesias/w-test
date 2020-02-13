@@ -1,5 +1,10 @@
 import React from "react";
-import { Typography, ButtonBase, CircularProgress } from "@material-ui/core";
+import {
+  Typography,
+  ButtonBase,
+  CircularProgress,
+  useMediaQuery
+} from "@material-ui/core";
 import { useWeb3React } from "@web3-react/core";
 
 import useStyles from "./styles";
@@ -21,6 +26,8 @@ const MainButton = ({
   const classes = useStyles();
   const context = useWeb3React();
   const { account, library, chainId } = context;
+
+  const shouldScale = useMediaQuery("(min-width: 430px)");
 
   const wrapEther = async () => {
     if (account && library && chainId === 1 && inputAmount > 0) {
@@ -90,7 +97,7 @@ const MainButton = ({
     <>
       <ButtonBase
         className={[
-          classes.mainButtonBase,
+          shouldScale ? classes.mainButtonBase : classes.mobileMainButtonBase,
           disabled ? classes.disabled : "",
           darkMode ? classes.darkModeButtonBase : classes.buttonBase
         ].join(" ")}

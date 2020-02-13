@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Typography, InputBase, ButtonBase } from "@material-ui/core";
+import {
+  Typography,
+  InputBase,
+  ButtonBase,
+  useMediaQuery
+} from "@material-ui/core";
 import MainButton from "../MainButton/MainButton";
 
 import useStyles from "./styles";
@@ -25,6 +30,8 @@ const InputArea = ({
   const [invalidInput, setInvalidInput] = useState(false);
   const classes = useStyles();
 
+  const shouldScale = useMediaQuery("(min-width: 430px)");
+
   useEffect(() => {
     if (disabled) return;
 
@@ -46,7 +53,13 @@ const InputArea = ({
           invalidInput ? classes.balanceTextInvalidInput : ""
         ].join(" ")}
       >{`${tokenName} Balance: ${balance}`}</Typography>
-      <div className={classes.textfieldAndButtonContainer}>
+      <div
+        className={
+          shouldScale
+            ? classes.textfieldAndButtonContainer
+            : classes.mobileTextfieldAndButtonContainer
+        }
+      >
         <div className={classes.inputFieldSepartor}>
           <div
             className={[
@@ -95,7 +108,11 @@ const InputArea = ({
             </div>
           </div>
         </div>
-        <div style={{ marginTop: 9 }}>
+        <div
+          style={
+            shouldScale ? { marginTop: 9 } : { marginTop: 24, width: "100%" }
+          }
+        >
           <MainButton
             submitButtonStatus={disabled}
             setEthInputAmount={setEthInputAmount}

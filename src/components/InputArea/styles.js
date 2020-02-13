@@ -43,6 +43,13 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "row"
   },
+  mobileTextfieldAndButtonContainer: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   inputFieldSepartor: {
     flexGrow: 1
   },
