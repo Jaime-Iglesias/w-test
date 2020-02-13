@@ -36,12 +36,19 @@ const useStyles = makeStyles({
     }
   },
   darkModeButtonBase: {
-    backgroundColor: "#bfbfbf",
+    backgroundColor: "#ececec",
     "&:hover": {
       border: "1px solid #5c5c5c"
     }
   },
   disabled: {
+    backgroundColor: "#bfbfbf",
+    cursor: "default",
+    "&:hover": {
+      border: "1px solid transparent"
+    }
+  },
+  darkModeDisabled: {
     backgroundColor: "#bfbfbf",
     cursor: "default",
     "&:hover": {

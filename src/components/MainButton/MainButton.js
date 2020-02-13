@@ -98,7 +98,8 @@ const MainButton = ({
       <ButtonBase
         className={[
           shouldScale ? classes.mainButtonBase : classes.mobileMainButtonBase,
-          disabled ? classes.disabled : "",
+          disabled && darkMode ? classes.darkModeDisabled : "",
+          disabled && !darkMode ? classes.disabled : "",
           darkMode ? classes.darkModeButtonBase : classes.buttonBase
         ].join(" ")}
         disableRipple

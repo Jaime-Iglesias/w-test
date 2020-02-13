@@ -26,9 +26,6 @@ const useStyles = makeStyles({
     top: 0,
     left: 0,
     backgroundColor: "#2d2d2d"
-  },
-  rootScaled: {
-    scale: 0.7
   }
 });
 
