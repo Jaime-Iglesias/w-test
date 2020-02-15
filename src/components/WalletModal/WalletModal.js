@@ -31,7 +31,9 @@ const WalletOptionContainer = ({
   return (
     <ButtonBase
       disableRipple
-      className={classes.optionContainer}
+      className={
+        darkMode ? classes.darkModeOptionContainer : classes.optionContainer
+      }
       onClick={activateWallet}
     >
       <img src={icon} alt={text} className={className} />
@@ -60,13 +62,13 @@ const WalletModal = ({ open, handleClose, darkMode }) => {
     >
       <div
         className={[
-          classes.wrapper,
+          darkMode ? classes.darkModeWrapper : classes.wrapper,
           !shouldScale ? classes.wrapperSmall : ""
         ].join(" ")}
       >
         <Typography
           className={[
-            classes.title,
+            darkMode ? classes.darkModeTitle : classes.title,
             !shouldScale ? classes.titleSmall : ""
           ].join(" ")}
         >
@@ -79,12 +81,13 @@ const WalletModal = ({ open, handleClose, darkMode }) => {
           justify="center"
           alignItems="flex-start"
         >
-          {setWallets(classes, activate, walletByName).map(obj => (
+          {setWallets(classes, activate, walletByName, darkMode).map(obj => (
             <WalletOptionContainer
-              icon={obj.icon}
+              icon={darkMode ? obj.darkModeIcon : obj.icon}
               text={obj.text}
               className={obj.className}
               activateWallet={obj.runActivation}
+              darkMode={darkMode}
             />
           ))}
         </Grid>
